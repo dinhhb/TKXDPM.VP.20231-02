@@ -3,7 +3,7 @@ package hust.soict.itep.aims.controller;
 
 import java.io.IOException;
 
-import hust.soict.itep.aims.model.ProductInCart;
+import hust.soict.itep.aims.entity.cart.ProductInCart;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

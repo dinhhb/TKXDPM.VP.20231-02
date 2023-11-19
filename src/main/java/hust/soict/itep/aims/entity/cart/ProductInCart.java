@@ -1,4 +1,4 @@
-package hust.soict.itep.aims.model;
+package hust.soict.itep.aims.entity.cart;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
