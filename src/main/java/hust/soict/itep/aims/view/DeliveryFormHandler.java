@@ -1,9 +1,9 @@
-package hust.soict.itep.aims.controller;
+package hust.soict.itep.aims.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class DeliveryFormController {
+public class DeliveryFormHandler {
 
     @FXML
     private TextField nameField;

@@ -1,4 +1,4 @@
-package hust.soict.itep.aims.controller;
+package hust.soict.itep.aims.view;
 
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class CartScreenController {
+public class CartScreenHandler {
 
     @FXML
     private TextField tfFilter;
