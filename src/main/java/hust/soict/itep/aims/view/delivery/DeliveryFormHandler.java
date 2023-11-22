@@ -1,4 +1,4 @@
-package hust.soict.itep.aims.view;
+package hust.soict.itep.aims.view.delivery;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

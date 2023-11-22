@@ -1,4 +1,4 @@
-package hust.soict.itep.aims.view;
+package hust.soict.itep.aims.view.cart;
 
 
 import java.io.IOException;

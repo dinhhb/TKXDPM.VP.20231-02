@@ -22,7 +22,7 @@
          <children>
             <ImageView fitHeight="103.0" fitWidth="119.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="image/Logo.png" />
+<!--                  <Image url="image/Logo.png" />-->
                </image>
             </ImageView>
             <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="64.0" prefWidth="34.0" />
@@ -36,7 +36,7 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@avtaims/avtaims.png" />
+<!--                        <Image url="@avtaims/avtaims.png" />-->
                      </image>
                   </ImageView>
                   <Label contentDisplay="CENTER" prefHeight="40.0" prefWidth="170.0" text="Dinh_duong" textAlignment="CENTER">
@@ -84,7 +84,7 @@
                   <Pane prefHeight="100.0" prefWidth="70.0" />
                   <ImageView fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@DaiSo.jpg" />
+<!--                        <Image url="@DaiSo.jpg" />-->
                      </image>
                      <HBox.margin>
                         <Insets />
@@ -122,7 +122,7 @@
                   <Pane prefHeight="100.0" prefWidth="70.0" />
                   <ImageView fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@GiaiTich.jpg" />
+<!--                        <Image url="@GiaiTich.jpg" />-->
                      </image>
                   </ImageView>
                   <Label contentDisplay="CENTER" prefHeight="58.0" prefWidth="300.0" text="Giải tích " textAlignment="CENTER">
@@ -157,7 +157,7 @@
                   <Pane prefHeight="100.0" prefWidth="70.0" />
                   <ImageView fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@triet.png" />
+<!--                        <Image url="@triet.png" />-->
                      </image>
                   </ImageView>
                   <Label contentDisplay="CENTER" prefHeight="58.0" prefWidth="300.0" text="Triết học" textAlignment="CENTER">
