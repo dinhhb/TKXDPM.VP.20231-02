@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import hust.soict.itep.aims.entity.media.Media;
+import hust.soict.itep.aims.exception.MediaNotAvailableException;
 
 public class Cart {
 
@@ -52,6 +53,18 @@ public class Cart {
         }
         return total;
     }
+
+    public void checkAvailabilityOfProduct() throws SQLException{
+        boolean allAvai = true;
+        for (Object object : lstCartMedia) {
+            CartMedia cartMedia = (CartMedia) object;
+            int requiredQuantity = cartMedia.getQuantity();
+            int availQuantity = cartMedia.getMedia().getQuantity();
+            if (requiredQuantity > availQuantity) allAvai = false;
+        }
+        if (!allAvai) throw new MediaNotAvailableException("Some media not available");
+    }
+
     public CartMedia checkMediaInCart(Media media){
         for (CartMedia cartMedia : lstCartMedia) {
             if (cartMedia.getMedia().getId() == media.getId()) return cartMedia;

@@ -11,9 +11,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 //import hust.soict.itep.aims.views.home.HomeScreenHandler;
 
-public class BaseScreenHandler extends FXMLScreenHandler {
+public abstract class BaseScreenHandler extends FXMLScreenHandler {
 
-    private Scene scene;
+    protected Scene scene;
     private BaseScreenHandler prev;
     protected final Stage stage;
 //    protected HomeScreenHandler homeScreenHandler;

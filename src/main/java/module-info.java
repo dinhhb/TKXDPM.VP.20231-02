@@ -16,4 +16,8 @@ module com.example.aims {
     opens hust.soict.itep.aims.view.delivery to javafx.fxml;
     exports hust.soict.itep.aims.view.cart;
     opens hust.soict.itep.aims.view.cart to javafx.fxml;
+
+    exports hust.soict.itep.aims;
+
+    opens hust.soict.itep.aims to javafx.fxml;
 }

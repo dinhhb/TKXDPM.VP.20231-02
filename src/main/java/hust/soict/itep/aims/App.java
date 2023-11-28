@@ -10,7 +10,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/fxml/AIMS_cart.fxml"));
+            BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/fxml/cart.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.show();
