@@ -1,11 +1,15 @@
 package com.hust.itep.aims;
 
+import com.hust.itep.aims.database.ConnectJDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class HelloApplication extends Application {
     @Override
@@ -18,6 +22,13 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        try {
+            String sql = "select * from media";
+            // connnect to database 'testdb'
+            Connection conn = ConnectJDBC.getConnection();
+            launch();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
