@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9231878f-275e-4043-8f5f-718fb7b8b2da" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="AnnotationType" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2YgN7WjFK9kbRbxaVUh2zssnHch" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "last_opened_file_path": "C:/Users/Admin/Documents/_Study^^/ITSS/Bai tap nhom/TKXDPM.VP.20231-02",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.hust.itep.aims.controller" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\_Study^^\ITSS\Bai tap nhom\TKXDPM.VP.20231-02\AIMS\src\main\resources" />
+      <recent name="C:\Users\Admin\Documents\_Study^^\ITSS\Bai tap nhom\TKXDPM.VP.20231-02\AIMS\src\main\resources\com\hust\itep\aims" />
+      <recent name="C:\Users\Admin\Documents\_Study^^\ITSS\Bai tap nhom\TKXDPM.VP.20231-02\AIMS\src\main\java\com\hust\itep\aims" />
+      <recent name="C:\Users\Admin\Documents\_Study^^\ITSS\TKXDPM.VP.20231-20205201.NguyenDinhDuong\Programming\AIMS\src\main\java\com\hust\itep\aims\service" />
+      <recent name="C:\Users\Admin\Documents\_Study^^\ITSS\TKXDPM.VP.20231-20205201.NguyenDinhDuong\Programming\AIMS\src\main\java\com\hust\itep\aims\entity" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Admin\Documents\_Study^^\ITSS\TKXDPM.VP.20231-20205201.NguyenDinhDuong\Programming\AIMS\src\main\resources\com\hust\itep\aims" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.hust.itep.aims.entity.media" />
+      <recent name="com.hust.itep.aims.controller" />
+      <recent name="com.hust.itep.aims.service" />
+      <recent name="com.hust.itep.aims.entity.cart" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.hust.itep.aims.utils" />
+      <recent name="com.hust.itep.aims.controller" />
+      <recent name="com.hust.itep.aims.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.HelloApplication">
+    <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.hust.itep.aims.HelloApplication" />
+      <module name="AIMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hust.itep.aims.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in AIMS" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIMS" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MediaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hust.itep.aims.entity.media.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.hust.itep.aims.entity.media" />
+      <option name="MAIN_CLASS_NAME" value="com.hust.itep.aims.entity.media.MediaTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MediaTest.testToString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hust.itep.aims.entity.media.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.hust.itep.aims.entity.media" />
+      <option name="MAIN_CLASS_NAME" value="com.hust.itep.aims.entity.media.MediaTest" />
+      <option name="METHOD_NAME" value="testToString" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ValidateControllerTest.validatePhoneNumber" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="AIMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hust.itep.aims.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.hust.itep.aims.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.hust.itep.aims.controller.ValidateControllerTest" />
+      <option name="METHOD_NAME" value="validatePhoneNumber" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.HelloApplication" />
+        <item itemvalue="JUnit.All in AIMS" />
+        <item itemvalue="JUnit.ValidateControllerTest.validatePhoneNumber" />
+        <item itemvalue="JUnit.MediaTest" />
+        <item itemvalue="JUnit.MediaTest.testToString" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9231878f-275e-4043-8f5f-718fb7b8b2da" name="Changes" comment="" />
+      <created>1700943097807</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700943097807</updated>
+      <workItem from="1700943098915" duration="1273000" />
+      <workItem from="1700944441451" duration="619000" />
+      <workItem from="1700993609538" duration="4448000" />
+      <workItem from="1701010100846" duration="2856000" />
+      <workItem from="1701013082991" duration="2723000" />
+      <workItem from="1701065644943" duration="2387000" />
+      <workItem from="1701082989846" duration="2776000" />
+      <workItem from="1701150739512" duration="2431000" />
+      <workItem from="1701160823013" duration="164000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="7c67d9e3-9730-4f02-8a45-254ebb9d20d2">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/Admin/Documents/_Study^^/ITSS/Bai tap nhom/TKXDPM.VP.20231-02/AIMS/src/test/java/com/hust/itep/aims" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="7c67d9e3-9730-4f02-8a45-254ebb9d20d2" value="TOOL_WINDOW" />
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AIMS$aims_in_AIMS.ic" NAME="aims in AIMS Coverage Results" MODIFIED="1701084602863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/AIMS$MediaTest.ic" NAME="MediaTest Coverage Results" MODIFIED="1701085294185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.hust.itep.aims.entity.media.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AIMS$HomeControllerTest.ic" NAME="HomeControllerTest Coverage Results" MODIFIED="1700996455603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.hust.itep.aims.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AIMS$MediaServiceTest.ic" NAME="MediaServiceTest Coverage Results" MODIFIED="1701084769562" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.hust.itep.aims.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AIMS$ValidateControllerTest.ic" NAME="ValidateControllerTest Coverage Results" MODIFIED="1701012825262" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.hust.itep.aims.controller.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AIMS$java_in_AIMS.ic" NAME="java in AIMS Coverage Results" MODIFIED="1701013206511" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/AIMS$All_in_AIMS.ic" NAME="All in AIMS Coverage Results" MODIFIED="1701150782344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/AIMS$MediaServiceTest_getQuantity.ic" NAME="MediaServiceTest.getQuantity Coverage Results" MODIFIED="1701084719038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.hust.itep.aims.service.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/AIMS$ValidateControllerTest_validatePhoneNumber.ic" NAME="ValidateControllerTest.validatePhoneNumber Coverage Results" MODIFIED="1701085369243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.hust.itep.aims.controller.*</FILTER>
+    </SUITE>
+  </component>
+</project>
