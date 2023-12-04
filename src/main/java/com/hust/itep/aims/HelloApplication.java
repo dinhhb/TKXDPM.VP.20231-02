@@ -24,31 +24,31 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
             //Test query
-//        Connection conn = null;
-//        try {
-//            String sql = "select * from media";
-//            // Connnect to database
-//            conn = ConnectJDBC.getConnection();
-//            // Create statement
-//            Statement stmt = conn.createStatement();
-//            // Get data
-//            ResultSet rs = stmt.executeQuery(sql);
-//            while (rs.next()) {
-//                System.out.println(rs.getString("category"));
-//                System.out.println(rs.getInt("price"));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        } finally {
-//            try{
-//                if(conn != null){
-//                    conn.close();
-//                    System.out.println("Close successful !");
-//                }
-//            } catch(SQLException e){
-//                System.out.println(e.getMessage());
-//            }
-//        }
+        Connection conn = null;
+        try {
+            String sql = "select * from media";
+            // Connnect to database
+            conn = ConnectJDBC.getConnection();
+            // Create statement
+            Statement stmt = conn.createStatement();
+            // Get data
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                System.out.println(rs.getString("category"));
+                System.out.println(rs.getInt("price"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                    System.out.println("Close successful !");
+                }
+            } catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
         launch();
     }
 }

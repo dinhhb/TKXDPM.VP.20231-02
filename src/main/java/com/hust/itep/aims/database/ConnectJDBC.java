@@ -10,7 +10,7 @@ public class ConnectJDBC {
     public static Connection getConnection() {
         Connection conn = null;
 
-        try(FileInputStream f = new FileInputStream("src/main/java/db.properties")) {
+        try(FileInputStream f = new FileInputStream("D:\\tkxdpm aims\\TKXDPM.VP.20231-02\\src\\main\\java\\db.properties")) {
             // load the properties file
             Properties pros = new Properties();
             pros.load(f);
