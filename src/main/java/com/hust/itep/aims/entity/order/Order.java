@@ -1,6 +1,7 @@
 package com.hust.itep.aims.entity.order;
 
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.List;
 
 public class Order {
@@ -8,6 +9,8 @@ public class Order {
     private int shippingFees;
     private int subtotal;
     private List lstOrderMedia;
+    private HashMap<String, String> deliveryInfo;
+
 
     public List<OrderMedia> getlstOrderMedia() {
         return this.lstOrderMedia;
@@ -44,4 +47,8 @@ public class Order {
     public void setSubtotal(int subtotal) {
         this.subtotal = subtotal;
     }
+    public HashMap getDeliveryInfo() {
+        return deliveryInfo;
+    }
+
 }
