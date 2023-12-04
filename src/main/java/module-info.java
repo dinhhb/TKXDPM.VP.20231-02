@@ -5,5 +5,8 @@ module com.hust.itep.aims {
 
 
     opens com.hust.itep.aims to javafx.fxml;
+    opens com.hust.itep.aims.view.home to javafx.fxml;
+    opens com.hust.itep.aims.view.cart to javafx.fxml;
+    opens com.hust.itep.aims.view.invoice to javafx.fxml;
     exports com.hust.itep.aims;
 }
