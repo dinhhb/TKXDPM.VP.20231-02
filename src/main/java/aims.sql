@@ -10,9 +10,9 @@ CREATE TABLE Media (
     title 					VARCHAR(50)		NOT NULL,
     description 			TEXT			NOT NULL,
     quantity           		INTEGER      	NOT NULL,
-    importDate         		DATE        	NOT NULL,
+    importDate         		DATE,
     rushOrderSupported 		BOOLEAN      	NOT NULL,
-    imageUrl           		VARCHAR(200) 	NOT NULL,
+    imageUrl           		VARCHAR(200),
     PRIMARY KEY (id)
 );
 
@@ -74,7 +74,7 @@ CREATE TABLE DeliveryInfo (
     province				VARCHAR(50)		NOT NULL,
     district				VARCHAR(50)		NOT NULL,
     address					VARCHAR(200)	NOT NULL,
-    rushOrderID				BIGINT			NOT NULL,
+    rushOrderID				BIGINT,
     message					VARCHAR(200),
     PRIMARY KEY (id),
     FOREIGN KEY (rushOrderID) REFERENCES RushOrderInfo (id)
@@ -96,7 +96,6 @@ CREATE TABLE Order_Media(
     mediaID				BIGINT			NOT NULL,
     quantity			INTEGER			NOT NULL,
     price				INTEGER			NOT NULL,
-    isRushOrder			BOOLEAN			NOT NULL,
 	FOREIGN KEY (orderID) REFERENCES OrderInfo (id),
     FOREIGN KEY (mediaID) REFERENCES Media (id)
 );
