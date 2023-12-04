@@ -2,6 +2,7 @@ package com.hust.itep.aims.service;
 
 
 
+import com.hust.itep.aims.entity.cart.Cart;
 import com.hust.itep.aims.entity.cart.CartMedia;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class CartService {
     private List<CartMedia> lstCartMedia;
 
     public CartService() {
+        this.lstCartMedia = Cart.getCart().getListMedia();
     }
 
     public void checkAvailabilityOfProduct() {
