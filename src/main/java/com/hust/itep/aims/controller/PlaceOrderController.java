@@ -13,10 +13,13 @@ import java.util.HashMap;
 public class PlaceOrderController {
 
     CartService cartService = new CartService();
+
+    // Functional cohesion
     public void placeOrder() {
         cartService.checkAvailabilityOfProduct();
     }
 
+    // Fuctional cohesion
     public Order createOrder() {
         Order order = new Order();
         for (Object object : cartService.getListMedia()) {
@@ -28,11 +31,12 @@ public class PlaceOrderController {
         return order;
     }
 
+    // Procedural cohesion
     public Invoice createInvoice(Order order) {
         return new Invoice(order);
     }
 
-
+    // Coincidental cohesion
     public int validateDeliveryInfo(HashMap<String, String> info) {
         ValidateController valController = new ValidateController();
 

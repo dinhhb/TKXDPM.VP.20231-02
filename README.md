@@ -68,6 +68,51 @@ This is a Capstone's source code for Software Design and Construction project
   <summary>W2: 5/12/2023~11/12/2023 </summary>
 <br>
 
+<details>
+
+<summary>Cao Thành Duy</summary>
+
+- Assigned tasks:
+    - Build VnPay payment
+
+- Implementation details:
+    - Pull Request(s): 
+    - Specific implementation details:
+        - Build VnPay connection
+
+</details>
+
+<details>
+<summary>Hà Bửu Định</summary>
+
+- Assigned tasks:
+    - Build usecase ViewCart
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/2
+    - Specific implementation details:
+        - Build controller, view handler for use case ViewCart
+        - Successfully show ViewCart screen but cannot display media in cart because of some errors
+
+</details>
+
+
+<details>
+<summary>Nguyễn Đình Dương</summary>
+
+- Assigned tasks:
+    - Build database
+    - Build base screen invoice
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/4
+    - Specific implementation details:
+        - Build database, connect db and test query
+        - Build view and handler for screen invoice but not have data
+
+</details>
+
+
 </details>
 
 

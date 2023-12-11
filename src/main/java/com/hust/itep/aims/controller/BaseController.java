@@ -10,10 +10,12 @@ import java.util.List;
 
 public class BaseController {
 
+    // Coincidental cohesion
     public CartMedia checkMediaInCart(Media media){
         return Cart.getCart().checkMediaInCart(media);
     }
 
+    // Coincidental cohesion
     public List getListCartMedia(){
         return Cart.getCart().getListMedia();
     }
