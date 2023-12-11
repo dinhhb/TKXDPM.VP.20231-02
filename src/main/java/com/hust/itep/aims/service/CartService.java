@@ -16,6 +16,7 @@ public class CartService {
         this.lstCartMedia = Cart.getCart().getListMedia();
     }
 
+    // functional cohesion
     public void checkAvailabilityOfProduct() {
         boolean check = true;
         for (CartMedia object : lstCartMedia) {
@@ -27,6 +28,7 @@ public class CartService {
         if(!check) throw new RuntimeException("Some media not available");
     }
 
+    // functional cohesion
     public int calSubtotal(){
         int total = 0;
         for (Object obj : lstCartMedia) {
