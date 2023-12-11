@@ -86,13 +86,12 @@ This is a Capstone's source code for Software Design and Construction project
 <summary>Hà Bửu Định</summary>
 
 - Assigned tasks:
-    - Build usecase ViewCart
+    - Build usecase CRUD Media for admin
 
 - Implementation details:
-    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/2
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/5
     - Specific implementation details:
-        - Build controller, view handler for use case ViewCart
-        - Successfully show ViewCart screen but cannot display media in cart because of some errors
+        - Build view, controller for usecase CRUD Media
 
 </details>
 
@@ -101,14 +100,12 @@ This is a Capstone's source code for Software Design and Construction project
 <summary>Nguyễn Đình Dương</summary>
 
 - Assigned tasks:
-    - Build database
-    - Build base screen invoice
+    - Build homescreen but not finished
+    - Fix viewCart
 
 - Implementation details:
-    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/4
+    - Pull Request(s): 
     - Specific implementation details:
-        - Build database, connect db and test query
-        - Build view and handler for screen invoice but not have data
 
 </details>
 
