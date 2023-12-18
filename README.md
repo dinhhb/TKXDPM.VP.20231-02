@@ -65,7 +65,7 @@ This is a Capstone's source code for Software Design and Construction project
 ---
 
 <details>
-  <summary>W2: 5/12/2023~11/12/2023 </summary>
+  <summary>Week 2: 5/12/2023~11/12/2023 </summary>
 <br>
 
 <details>
@@ -106,6 +106,63 @@ This is a Capstone's source code for Software Design and Construction project
 - Implementation details:
     - Pull Request(s): 
     - Specific implementation details:
+
+</details>
+
+
+</details>
+
+
+---
+
+<details>
+  <summary>Week 3: 12/12/2023~18/12/2023 </summary>
+<br>
+
+<details>
+
+<summary>Cao Thành Duy</summary>
+
+- Assigned tasks:
+    - Fix VnPay payment
+    - Build return result payment
+
+- Implementation details:
+    - Pull Request(s):
+    - Specific implementation details:
+        - Fix VnPay connection 
+        - Build return result payment
+
+
+</details>
+
+<details>
+<summary>Hà Bửu Định</summary>
+
+- Assigned tasks:
+    - Fix usecase CRUD Media for admin
+
+- Implementation details:
+    - Pull Request(s):
+    - Specific implementation details:
+        - Fix view, controller for usecase CRUD Media
+
+</details>
+
+
+<details>
+<summary>Nguyễn Đình Dương</summary>
+
+- Assigned tasks:
+    - Display invoice
+    - Export invoice
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/6
+    - Specific implementation details:
+        - Display successful invoice
+        - Export invoice and test QR payment
+        - Fix Aims homescreen
 
 </details>
 
