@@ -1,6 +1,8 @@
 CREATE DATABASE AIMS;
 USE AIMS;
 
+
+-- Table: User
 CREATE TABLE User(
 	id 						INTEGER 		NOT NULL AUTO_INCREMENT,
     username				VARCHAR(50)		NOT NULL,
@@ -11,7 +13,7 @@ CREATE TABLE User(
 
 -- Table: Media
 CREATE TABLE Media (
-	id 						INTEGER 			NOT NULL AUTO_INCREMENT,
+	id 						INTEGER 		NOT NULL AUTO_INCREMENT,
     category				VARCHAR(50) 	NOT NULL,
     price 					INTEGER			NOT NULL,
     value 					INTEGER			NOT NULL,
@@ -19,7 +21,7 @@ CREATE TABLE Media (
     description 			VARCHAR(255)	NOT NULL,
     quantity           		INTEGER      	NOT NULL,
     importDate         		DATE,
-    rushOrderSupported 		BOOLEAN      	NOT NULL,
+    rushOrderSupported 		BOOLEAN,
     barcode					VARCHAR(50)		NOT NULL,
     productDimension		VARCHAR(50),	
     imageUrl           		VARCHAR(200),
@@ -28,7 +30,7 @@ CREATE TABLE Media (
 
 -- Table: Book
 CREATE TABLE Book (
-	id 						INTEGER 			NOT NULL,
+	id 						INTEGER 		NOT NULL,
     authors					VARCHAR(50) 	NOT NULL,
     hardCover 				VARCHAR(50) 	NOT NULL,
     publisher 				VARCHAR(50) 	NOT NULL,
@@ -42,7 +44,7 @@ CREATE TABLE Book (
 
 -- Table: Cd and LP
 CREATE TABLE CD_and_LP (
-	id 						INTEGER 			NOT NULL,
+	id 						INTEGER 		NOT NULL,
     artists					VARCHAR(50) 	NOT NULL,
     recordLabel 			VARCHAR(50) 	NOT NULL,
     trackList				VARCHAR(200)	NOT NULL,
@@ -54,7 +56,7 @@ CREATE TABLE CD_and_LP (
 
 -- Table: DVD
 CREATE TABLE DVD (
-	id 						INTEGER 			NOT NULL,
+	id 						INTEGER 		NOT NULL,
     dvdType					VARCHAR(50)		NOT NULL,
     director				VARCHAR(50) 	NOT NULL,
     runtime		 			INTEGER		 	NOT NULL,
@@ -69,7 +71,7 @@ CREATE TABLE DVD (
 
 -- Table: RushOrderInfo
 CREATE TABLE RushOrderInfo (
-	id 						INTEGER 			NOT NULL AUTO_INCREMENT,
+	id 						INTEGER 		NOT NULL AUTO_INCREMENT,
 	deliveryTime			DATETIME		NOT NULL,
     instructions			VARCHAR(200)	NOT NULL,
 	PRIMARY KEY (id)
@@ -77,7 +79,7 @@ CREATE TABLE RushOrderInfo (
 
 -- Table: DeliveryInfo
 CREATE TABLE DeliveryInfo (
-	id 						INTEGER 			NOT NULL AUTO_INCREMENT,
+	id 						INTEGER 		NOT NULL AUTO_INCREMENT,
     name 					VARCHAR(50)		NOT NULL, 
     phone					VARCHAR(15)		NOT NULL,
     email					VARCHAR(50)		NOT NULL,
@@ -92,7 +94,7 @@ CREATE TABLE DeliveryInfo (
 
 -- Table: OrderInfo
 CREATE TABLE OrderInfo(
-	id 						INTEGER 			NOT NULL AUTO_INCREMENT,
+	id 						INTEGER 		NOT NULL AUTO_INCREMENT,
 	shippingFees			INTEGER			NOT NULL,
     subtotal				INTEGER			NOT NULL,
     deliveryInfoId			INTEGER			NOT NULL,
@@ -102,7 +104,7 @@ CREATE TABLE OrderInfo(
 
 -- Table: Order_Media
 CREATE TABLE Order_Media(
-	orderID				INTEGER 			NOT NULL,
+	orderID				INTEGER 		NOT NULL,
     mediaID				INTEGER			NOT NULL,
     quantity			INTEGER			NOT NULL,
     price				INTEGER			NOT NULL,
@@ -112,16 +114,16 @@ CREATE TABLE Order_Media(
 
 -- Table: Invoice
 CREATE TABLE Invoice(
-	id 						INTEGER 			NOT NULL AUTO_INCREMENT,
+	id 						INTEGER 		NOT NULL AUTO_INCREMENT,
     totalAmount				INTEGER			NOT NULL,
-    orderId					INTEGER 			NOT NULL,
+    orderId					INTEGER 		NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (orderId) REFERENCES OrderInfo (id)
 );
 
 -- Table: VnPay
 CREATE TABLE VnPAY(
-	id 						INTEGER 			NOT NULL AUTO_INCREMENT,
+	id 						INTEGER 		NOT NULL AUTO_INCREMENT,
     imageQRUrl				VARCHAR(50)		NOT NULL,	
     paymentAccountName		VARCHAR(50)		NOT NULL,
     paymentAccountNumber	VARCHAR(50)		NOT NULL,
@@ -131,7 +133,7 @@ CREATE TABLE VnPAY(
 
 -- Table: PaymentTransaction
 CREATE TABLE PaymentTransaction(
-	id 						INTEGER 			NOT NULL AUTO_INCREMENT,
+	id 						INTEGER 		NOT NULL AUTO_INCREMENT,
     createAt				DATETIME		NOT NULL,
     paymentTime				DATETIME		NOT NULL,	
     content					VARCHAR(50)		NOT NULL,

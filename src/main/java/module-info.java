@@ -2,6 +2,11 @@ module com.hust.itep.aims {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.desktop;
+    requires com.google.zxing;
+    requires jasperreports;
+    requires com.formdev.flatlaf;
+    requires com.google.zxing.javase;
 
 
     opens com.hust.itep.aims to javafx.fxml;
