@@ -1,6 +1,7 @@
 package com.hust.itep.aims.entity.media;
 
 import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class Media {
@@ -66,6 +67,17 @@ public class Media {
         return productDimension;
     }
 
+    public Media (){
+    };
+
+    public Media(int id, String title, int price, String category, int quantity) {
+        this.id = id;
+        this.category = category;
+        this.price = price;
+        this.title = title;
+        this.quantity = quantity;
+    };
+
     public Media(Integer id, String category, int price, int value, String title, String description, int quantity, Date importDate, Boolean rushOrderSupport, String barcode, String productDimension, String imageUrl) {
         this.id = id;
         this.category = category;
@@ -80,5 +92,14 @@ public class Media {
         this.barcode = barcode;
         this.imageUrl = imageUrl;
     }
-
+    public Object[] toTableRow(int rowNum) {
+        DecimalFormat df = new DecimalFormat("#,##0.##");
+        return new Object[]{
+                this,
+                df.format(rowNum),
+                title,
+                df.format(price)+" VND",
+                category,
+                df.format(quantity)};
+    }
 }
