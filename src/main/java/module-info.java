@@ -6,7 +6,7 @@ module com.hust.itep.aims {
     requires com.google.zxing;
     requires jasperreports;
     requires com.formdev.flatlaf;
-    requires com.google.zxing.javase;
+//    requires com.google.zxing.javase;
 
 
     opens com.hust.itep.aims to javafx.fxml;
@@ -17,4 +17,10 @@ module com.hust.itep.aims {
     opens com.hust.itep.aims.controller to javafx.fxml;
     exports com.hust.itep.aims.controller;
     exports com.hust.itep.aims;
+    exports com.hust.itep.aims.controller.admin;
+    opens com.hust.itep.aims.controller.admin to javafx.fxml;
+    exports com.hust.itep.aims.service;
+    opens com.hust.itep.aims.service to javafx.fxml;
+    exports com.hust.itep.aims.service.admin;
+    opens com.hust.itep.aims.service.admin to javafx.fxml;
 }

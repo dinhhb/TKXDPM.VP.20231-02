@@ -38,4 +38,4 @@ build/
 ### Mac OS ###
 .DS_Store
 
-!**/src/main/java/db.properties
+**/src/main/java/db.properties

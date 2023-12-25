@@ -2,7 +2,7 @@ package com.hust.itep.aims.controller;
 
 
 import com.hust.itep.aims.database.ConnectJDBC;
-import com.hust.itep.aims.entity.admin.Data;
+import com.hust.itep.aims.entity.admin.AdminSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -56,7 +56,7 @@ public class LoginController implements Initializable {
                 // neu success chuyen sang man hinh admin neu la admin, user neu la user
                 if (result.next()){
                     // lay username user nhap vao
-                    Data.username = username.getText();
+                    AdminSession.username = username.getText();
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
@@ -71,8 +71,8 @@ public class LoginController implements Initializable {
                         Scene scene = new Scene(root);
 
                         stage.setTitle("AIMS");
-                        stage.setMinWidth(1100);
-                        stage.setMinHeight(600);
+                        stage.setMinWidth(1400);
+                        stage.setMinHeight(800);
 
                         stage.setScene(scene);
                         stage.show();
@@ -83,7 +83,7 @@ public class LoginController implements Initializable {
                         Scene scene = new Scene(root);
 
                         stage.setTitle("AIMS");
-                        stage.setMinWidth(1100);
+                        stage.setMinWidth(1600);
                         stage.setMinHeight(600);
 
                         stage.setScene(scene);
