@@ -93,13 +93,15 @@ public class Media {
         this.imageUrl = imageUrl;
     }
     public Object[] toTableRow(int rowNum) {
+        DecimalFormat dfPrice = new DecimalFormat("#,##0.00");
         DecimalFormat df = new DecimalFormat("#,##0.##");
         return new Object[]{
                 this,
                 df.format(rowNum),
                 title,
-                df.format(price)+" VND",
                 category,
-                df.format(quantity)};
+                dfPrice.format(price)+" VND",
+                df.format(quantity),
+                dfPrice.format( quantity*price)+" VND"};
     }
 }

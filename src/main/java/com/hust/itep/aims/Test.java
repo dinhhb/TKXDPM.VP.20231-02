@@ -1,36 +1,23 @@
 package com.hust.itep.aims;
 
-
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLaf;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
 
-import com.hust.itep.aims.controller.print.ReportManager;
+import com.hust.itep.aims.database.ConnectJDBC;
 import com.hust.itep.aims.service.EventCellInputChange;
 import com.hust.itep.aims.service.QtyCellEditor;
 import com.hust.itep.aims.entity.media.Media;
-import com.hust.itep.aims.entity.print.FieldReportPayment;
-import com.hust.itep.aims.entity.print.ParameterReportPayment;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.util.List;
-import java.util.*;
+
 
 
 public class Test extends javax.swing.JFrame {
@@ -55,7 +42,31 @@ public class Test extends javax.swing.JFrame {
                 sumAmount();
             }
         }));
-        table.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
+        table.getColumnModel().getColumn(1).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                setHorizontalAlignment(SwingConstants.CENTER);
+                return this;
+            }
+        });
+        table.getColumnModel().getColumn(4).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                setHorizontalAlignment(SwingConstants.CENTER);
+                return this;
+            }
+        });
+        table.getColumnModel().getColumn(5).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                setHorizontalAlignment(SwingConstants.CENTER);
+                return this;
+            }
+        });
+        table.getColumnModel().getColumn(6).setCellRenderer(new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -64,9 +75,40 @@ public class Test extends javax.swing.JFrame {
             }
         });
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.addRow(new Media(1, "Abc", 50000, "book", 5).toTableRow(table.getRowCount() + 1));
-        model.addRow(new Media(2, "Abc123", 120000, "dvd", 5).toTableRow(table.getRowCount() + 1));
-        sumAmount();
+        Connection conn = null;
+        try {
+            String sql = "select  Media.title, Order_Media.price, Media.category, Order_Media.Quantity\n" +
+                    "from Order_Media\n" +
+                    "LEFT JOIN media\n" +
+                    "on Order_Media.mediaId = media.id\n" +
+                    "where orderId = 1\n";
+            conn = ConnectJDBC.getConnection();
+            Statement stmt = conn.createStatement();
+            // Get data
+            ResultSet rs = stmt.executeQuery(sql);
+            int i = 1;
+            int sum = 0;
+            while (rs.next()) {
+                model.addRow(new Media(i,
+                        rs.getString("title"),
+                        rs.getInt("price"),
+                        rs.getString("category"),
+                        rs.getInt("quantity")).toTableRow(table.getRowCount() + 1));
+                i++;
+            }
+            sumAmount();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                if(conn != null){
+                    conn.close();
+                    System.out.println("Close successful !");
+                }
+            } catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void sumAmount() {
@@ -94,7 +136,7 @@ public class Test extends javax.swing.JFrame {
 
                 },
                 new String [] {
-                        "Data", "No", "Name", "Price", "Category", "Quantity"
+                        "Data", "No", "Name", "Category", "Price", "Quantity", "Total Price"
                 }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -118,12 +160,12 @@ public class Test extends javax.swing.JFrame {
 
         lbTotal.setText("0.0");
 
-        jButton1.setText("Print");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.setText("Payment");
+//        jButton1.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                jButton1ActionPerformed(evt);
+//            }
+//        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,33 +204,33 @@ public class Test extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        try {
-            List<FieldReportPayment> fields = new ArrayList<>();
-            for (int i = 0; i < table.getRowCount(); i++) {
-                Media data = (Media) table.getValueAt(i, 0);
+//    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+//        try {
+//            List<FieldReportPayment> fields = new ArrayList<>();
+//            for (int i = 0; i < table.getRowCount(); i++) {
+//                Media data = (Media) table.getValueAt(i, 0);
+//
+//                fields.add(new FieldReportPayment(data.getTitle(), data.getPrice(),data.getCategory(), data.getQuantity()));
+//            }
+//            ParameterReportPayment dataprint = new ParameterReportPayment("Admin", "MR A", lbTotal.getText(), generateQrcode(), fields);
+//            ReportManager.getInstance().printReportPayment(dataprint);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }//GEN-LAST:event_jButton1ActionPerformed
 
-                fields.add(new FieldReportPayment(data.getTitle(), data.getPrice(),data.getCategory(), data.getQuantity()));
-            }
-            ParameterReportPayment dataprint = new ParameterReportPayment("Admin", "MR A", lbTotal.getText(), generateQrcode(), fields);
-            ReportManager.getInstance().printReportPayment(dataprint);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private InputStream generateQrcode() throws WriterException, IOException {
-        NumberFormat nf = new DecimalFormat("0000000");
-        Random ran = new Random();
-        String invoice = nf.format(ran.nextInt(9999999) + 1);
-        Map<EncodeHintType, Object> hints = new HashMap<>();
-        hints.put(EncodeHintType.MARGIN, 0);
-        BitMatrix bitMatrix = new MultiFormatWriter().encode(invoice, BarcodeFormat.QR_CODE, 100, 100, hints);
-        BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ImageIO.write(image, "png", outputStream);
-        return new ByteArrayInputStream(outputStream.toByteArray());
-    }
+//    private InputStream generateQrcode() throws WriterException, IOException {
+//        NumberFormat nf = new DecimalFormat("0000000");
+//        Random ran = new Random();
+//        String invoice = nf.format(ran.nextInt(9999999) + 1);
+//        Map<EncodeHintType, Object> hints = new HashMap<>();
+//        hints.put(EncodeHintType.MARGIN, 0);
+//        BitMatrix bitMatrix = new MultiFormatWriter().encode(invoice, BarcodeFormat.QR_CODE, 100, 100, hints);
+//        BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
+//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+//        ImageIO.write(image, "png", outputStream);
+//        return new ByteArrayInputStream(outputStream.toByteArray());
+//    }
 
     /**
      * @param args the command line arguments
