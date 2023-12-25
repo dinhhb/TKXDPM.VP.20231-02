@@ -39,7 +39,7 @@ CREATE TABLE Book (
     language				VARCHAR(50),
     bookCategory			VARCHAR(50),
     PRIMARY KEY (id),
-    FOREIGN KEY (id) REFERENCES Media (id)
+    FOREIGN KEY (id) REFERENCES Media (id) ON DELETE CASCADE
 );
 
 -- Table: Cd and LP
@@ -51,7 +51,7 @@ CREATE TABLE CD_and_LP (
     releaseDate				DATE,	
     musicType				VARCHAR(50)		NOT NULL,	
     PRIMARY KEY (id),
-    FOREIGN KEY (id) REFERENCES Media (id) 		
+    FOREIGN KEY (id) REFERENCES Media (id) 	ON DELETE CASCADE
 );
 
 -- Table: DVD
@@ -66,7 +66,7 @@ CREATE TABLE DVD (
     releasedDate			DATE,
     filmType				VARCHAR(50),
     PRIMARY KEY (id),
-    FOREIGN KEY (id) REFERENCES Media (id) 		
+    FOREIGN KEY (id) REFERENCES Media (id) 	ON DELETE CASCADE
 );
 
 -- Table: RushOrderInfo

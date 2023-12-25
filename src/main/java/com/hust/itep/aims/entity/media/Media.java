@@ -1,6 +1,5 @@
 package com.hust.itep.aims.entity.media;
 
-import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.util.Date;
 
@@ -19,6 +18,54 @@ public class Media {
     private String imageUrl;
     private String productDimension;
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setImportDate(Date importDate) {
+        this.importDate = importDate;
+    }
+
+    public void setRushOrderSupport(Boolean rushOrderSupport) {
+        this.rushOrderSupport = rushOrderSupport;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setProductDimension(String productDimension) {
+        this.productDimension = productDimension;
+    }
+
     public int getId() {
         return id;
     }
@@ -27,7 +74,7 @@ public class Media {
         return category;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
@@ -103,5 +150,23 @@ public class Media {
                 dfPrice.format(price)+" VND",
                 df.format(quantity),
                 dfPrice.format( quantity*price)+" VND"};
+    }
+
+    @Override
+    public String toString() {
+        return "Media{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", value=" + value +
+                ", quantity=" + quantity +
+                ", description='" + description + '\'' +
+                ", productDimension='" + productDimension + '\'' +
+                ", barcode='" + barcode + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", rushOrderSupport=" + rushOrderSupport +
+                // add other fields if present
+                '}';
     }
 }
