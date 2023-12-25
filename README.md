@@ -166,7 +166,65 @@ This is a Capstone's source code for Software Design and Construction project
 
 </details>
 
+</details>
 
+
+---
+
+<details>
+  <summary>Week 4: 19/12/2023~25/12/2023 </summary>
+<br>
+
+<details>
+
+<summary>Cao Thành Duy</summary>
+
+- Assigned tasks:
+    - Done Payment VnPay
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/9
+    - Specific implementation details:
+        - Change in VnPayController
+        - Return Url after payment
+
+
+</details>
+
+<details>
+<summary>Hà Bửu Định</summary>
+
+- Assigned tasks:
+    - Refactor Admin CRUD Media: using factory pattern and singleton pattern to avoid control coupling and ease of extension 
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/8
+    - Specific implementation details:
+        - Create class MediaScreenFactory to create instances of different types of MediaScreen based on the category of media
+        - Write BookScreen, CDScreen, … class to load the fxml of add book detail, add cd detail
+        - Move database execution code from adminController to MediaService -> enhance cohesion
+        - Using singleton pattern in MediaService to ensure only one instance of MediaService exist
+        - Create class MediaServiceFactory to create instances of services IMediaService
+        - Write BookService, CDService,… classs to provide specific business logic for handling Book, CD media type
+
+</details>
+
+
+<details>
+<summary>Nguyễn Đình Dương</summary>
+
+- Assigned tasks:
+    - Update invoice 
+    - Build home page screen
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/7
+    - Specific implementation details:
+        - Update and retrieve data from database for invoice
+        - Remove redundant files payment
+        - Build home page screen
+
+</details>
 </details>
 
 
