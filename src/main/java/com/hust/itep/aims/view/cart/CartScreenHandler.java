@@ -27,8 +27,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Logger;
 
 public class CartScreenHandler extends BaseScreenHandler {
+
+    private static Logger LOGGER = Utils.getLogger(CartScreenHandler.class.getName());
 
     @FXML
     private ImageView aimsImage;
@@ -48,31 +51,23 @@ public class CartScreenHandler extends BaseScreenHandler {
     @FXML
     private Button placeOrderBtn;
 
-//    String screenPath = "AIMS_cart.fxml";
 
     ClassLoader classLoader = getClass().getClassLoader();
 
     public CartScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
-        // fix relative image path caused by fxml
-//        File file = new File("/resources/image/Logo.png");
-//        Image im = new Image(file.toURI().toString());
-//        aimsImage.setImage(im);
-
-        // on mouse clicked, we back to home
-//        aimsImage.setOnMouseClicked(e -> {
-//            homeScreenHandler.show();
-//        });
-
-        // on mouse clicked, we start processing place order usecase
         placeOrderBtn.setOnMouseClicked(e -> {
+            LOGGER.info("Place Order button clicked");
             try {
                 requestToPlaceOrder();
             } catch (Exception exp) {
+                LOGGER.severe("Cannot place the order, see the logs");
                 exp.printStackTrace();
+                throw new RuntimeException("Cannot place the order");
             }
         });
     }
+
 
     public ViewCartController getBController(){
         return (ViewCartController) super.getBController();
@@ -89,28 +84,26 @@ public class CartScreenHandler extends BaseScreenHandler {
         try {
             // create placeOrderController and process the order
             PlaceOrderController placeOrderController = new PlaceOrderController();
-            if (placeOrderController.getListCartMedia().size() == 0){
-                return;
-            }
+//            if (placeOrderController.getListCartMedia().size() == 0){
+//                return;
+//            }
 
-            placeOrderController.placeOrder();
+//            placeOrderController.placeOrder();
 
             // display available media
             displayCartWithMediaAvailability();
 
             // create order
-            Order order = placeOrderController.createOrder();
+//            Order order = placeOrderController.createOrder();
+            Order order = new Order();
 
             // display shipping form
-            ShippingScreenHandler shippingScreenHandler = new ShippingScreenHandler(
-                    this.stage, Configs.SHIPPING_SCREEN_PATH, order);
-            shippingScreenHandler.setPreviousScreen(this);
-//            shippingScreenHandler.setHomeScreenHandler(homeScreenHandler);
+            ShippingScreenHandler shippingScreenHandler = new ShippingScreenHandler(this.stage, Configs.SHIPPING_SCREEN_PATH, order);
             shippingScreenHandler.setScreenTitle("Shipping Screen");
-            shippingScreenHandler.setBController(placeOrderController);
+//            shippingScreenHandler.setBController(placeOrderController);
             shippingScreenHandler.show();
-
         } catch (Exception e) {
+            LOGGER.info("Error: "+e);
             // if some media are not available then display cart and break usecase Place Order
             displayCartWithMediaAvailability();
         }
@@ -126,7 +119,7 @@ public class CartScreenHandler extends BaseScreenHandler {
         int subtotal = getBController().getCartSubtotal();
         int vat = (int)((Configs.PERCENT_VAT/100)*subtotal);
         int amount = subtotal + vat;
-//        LOGGER.info("amount" + amount);
+        LOGGER.info("amount" + amount);
 
         // update subtotal and amount of Cart
         subtotalLabel.setText(Utils.getCurrencyFormat(subtotal));

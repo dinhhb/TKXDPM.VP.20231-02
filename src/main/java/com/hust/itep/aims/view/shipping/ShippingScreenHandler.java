@@ -10,9 +10,11 @@ import com.hust.itep.aims.view.BaseScreenHandler;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 
@@ -24,10 +26,13 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 	private static final Logger LOGGER = Utils.getLogger(ShippingScreenHandler.class.getName());
 
 	@FXML
-	private Label screenTitle;
+	private HBox screenTitle;
 
 	@FXML
 	private TextField name;
+
+	@FXML
+	private TextField gmail;
 
 	@FXML
 	private TextField phone;
@@ -39,7 +44,7 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 	private TextField instructions;
 
 	@FXML
-	private ComboBox<String> province;
+	private ChoiceBox<String> province;
 
 	private Order order;
 
@@ -76,6 +81,7 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 		HashMap<String, String> messages = new HashMap<>();
 		messages.put("name", name.getText());
 		messages.put("phone", phone.getText());
+		messages.put("gmail", gmail.getText());
 		messages.put("address", address.getText());
 		messages.put("instructions", instructions.getText());
 		messages.put("province", province.getValue());
