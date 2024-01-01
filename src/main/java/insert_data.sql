@@ -36,4 +36,4 @@ INSERT INTO DeliveryInfo (name, phone, email, province, district, address, rushO
 INSERT INTO OrderInfo (shippingFees, subtotal, deliveryInfoId) VALUES (100, 500, 1);
 
 -- Insert data into Order_Media table
-INSERT INTO Order_Media (orderID, mediaID, quantity, price) VALUES (2, 1, 2, 100);
+INSERT INTO Order_Media (orderID, quantity, price, MediaId) VALUES (1, 2, 100, 1);
