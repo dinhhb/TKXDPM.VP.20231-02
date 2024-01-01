@@ -2,6 +2,7 @@ package com.hust.itep.aims.view;
 
 
 import com.hust.itep.aims.controller.BaseController;
+import com.hust.itep.aims.view.home.HomeScreenHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -13,11 +14,11 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
     protected Scene scene;
     private BaseScreenHandler prev;
     protected final Stage stage;
-//    protected HomeScreenHandler homeScreenHandler;
+    protected HomeScreenHandler homeScreenHandler;
     protected Hashtable<String, String> messages;
     private BaseController bController;
 
-    private BaseScreenHandler(String screenPath) throws IOException {
+    public BaseScreenHandler(String screenPath) throws IOException {
         super(screenPath);
         this.stage = new Stage();
     }
@@ -59,8 +60,8 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
         this.messages = messages;
     }
 
-//    public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
-//        this.homeScreenHandler = HomeScreenHandler;
-//    }
+    public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
+        this.homeScreenHandler = HomeScreenHandler;
+    }
 
 }

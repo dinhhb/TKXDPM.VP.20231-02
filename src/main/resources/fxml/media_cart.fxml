@@ -49,11 +49,11 @@
 <!--                </font>-->
 <!--            </Label>-->
             <ChoiceBox prefHeight="26.0" prefWidth="114.0" />
-            <Label fx:id="deleteBtn" alignment="BOTTOM_RIGHT" prefHeight="23.0" prefWidth="354.0" text="Xóa" textAlignment="CENTER" textFill="#ff3c3c">
+            <Button fx:id="deleteBtn" alignment="BOTTOM_RIGHT" prefHeight="23.0" prefWidth="354.0" text="Xóa" textAlignment="CENTER" textFill="#ff3c3c">
                 <font>
                     <Font name="SVN-Linux Libertine" size="18.0" />
                 </font>
-            </Label>
+            </Button>
         </children>
         <opaqueInsets>
             <Insets />
