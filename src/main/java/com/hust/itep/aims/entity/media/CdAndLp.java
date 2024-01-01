@@ -7,15 +7,15 @@ public class CdAndLp extends Media {
    private String artists;
    private String recordLabel;
    private String trackList;
-   private Date publicationDate;
+   private Date releaseDate;
    private String musicType;
 
-   public CdAndLp(Integer id, String category, int price, int value, String title, String description, int quantity, Date importDate, Boolean rushOrderSupport, String barcode, String productDimension, String imageUrl, String artists, String recordLabel, String trackList, Date publicationDate, String musicType) {
+   public CdAndLp(Integer id, String category, int price, int value, String title, String description, int quantity, Date importDate, Boolean rushOrderSupport, String barcode, String productDimension, String imageUrl, String artists, String recordLabel, String trackList, Date releaseDate, String musicType) {
        super(id, category, price, value, title, description, quantity, importDate, rushOrderSupport, barcode, productDimension, imageUrl);
        this.artists = artists;
        this.recordLabel = recordLabel;
        this.trackList = trackList;
-       this.publicationDate = publicationDate;
+       this.releaseDate = releaseDate;
        this.musicType = musicType;
    }
 
@@ -47,12 +47,12 @@ public class CdAndLp extends Media {
        this.trackList = trackList;
    }
 
-   public Date getPublicationDate() {
-       return publicationDate;
+   public Date getReleaseDate() {
+       return releaseDate;
    }
 
-   public void setPublicationDate(Date publicationDate) {
-       this.publicationDate = publicationDate;
+   public void setReleaseDate(Date releaseDate) {
+       this.releaseDate = releaseDate;
    }
 
    public String getMusicType() {

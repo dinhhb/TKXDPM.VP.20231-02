@@ -58,10 +58,10 @@ public class AdminController implements Initializable, DataChangedListener {
     private AnchorPane main_form;
 
     @FXML
-    private ComboBox<?> media_category;
+    private ComboBox<String> media_category;
 
     @FXML
-    private ComboBox<?> media_rushOrderSupport;
+    private ComboBox<String> media_rushOrderSupport;
 
     @FXML
     private TextArea media_description;
@@ -310,6 +310,7 @@ public class AdminController implements Initializable, DataChangedListener {
         AdminSession.path = "";
         AdminSession.id = 0;
         medias_imageView.setImage(null);
+        media_category.setDisable(false);
     }
 
     public void selectMedia(){
@@ -325,6 +326,14 @@ public class AdminController implements Initializable, DataChangedListener {
         media_price.setText(String.valueOf(media.getPrice()));
         media_productDimension.setText(media.getProductDimension());
         media_description.setText(media.getDescription());
+
+        // Set the ComboBox values and disable them
+        media_category.setValue(media.getCategory());
+        media_category.setDisable(true);
+
+//        String rushOrderSupportValue = media.getRushOrderSupport() ? "Yes" : "No";
+//        media_rushOrderSupport.setValue(rushOrderSupportValue);
+//        media_rushOrderSupport.setDisable(true);
 
         AdminSession.path = media.getImageUrl();
 
