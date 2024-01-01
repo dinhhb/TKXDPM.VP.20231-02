@@ -2,31 +2,23 @@ package com.hust.itep.aims.view.cart;
 
 import com.hust.itep.aims.controller.PlaceOrderController;
 import com.hust.itep.aims.controller.ViewCartController;
-import com.hust.itep.aims.entity.cart.Cart;
 import com.hust.itep.aims.entity.cart.CartMedia;
-import com.hust.itep.aims.entity.media.Media;
 import com.hust.itep.aims.entity.order.Order;
 import com.hust.itep.aims.utils.Configs;
 import com.hust.itep.aims.utils.Utils;
 import com.hust.itep.aims.view.BaseScreenHandler;
+import com.hust.itep.aims.view.home.HomeScreenHandler;
 import com.hust.itep.aims.view.shipping.ShippingScreenHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 public class CartScreenHandler extends BaseScreenHandler {
@@ -73,9 +65,9 @@ public class CartScreenHandler extends BaseScreenHandler {
         return (ViewCartController) super.getBController();
     }
 
-    public void requestToViewCart() throws SQLException {
+    public void requestToViewCart(HomeScreenHandler homeScreenHandler) throws SQLException {
         setScreenTitle("Cart Screen");
-//        getBController().checkAvailabilityOfProduct();
+        getBController().checkAvailabilityOfProduct();
         displayCartWithMediaAvailability();
         show();
     }
@@ -88,7 +80,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 //                return;
 //            }
 
-//            placeOrderController.placeOrder();
+            placeOrderController.placeOrder();
 
             // display available media
             displayCartWithMediaAvailability();
@@ -133,14 +125,14 @@ public class CartScreenHandler extends BaseScreenHandler {
 
         // get list media of cart after check availability
 //        List lstMedia = getBController().getListCartMedia();
-        List lstMedia = new ArrayList();
-        Media media = new Media (5, "abc", 100, "book", 3);
-        Cart cart = Cart.getCart();
-        CartMedia cartMedia1 = new CartMedia(media, cart,2, 200); // replace quantity and price with actual values
-        lstMedia.add(cartMedia1);
-        System.out.println("Test: "+lstMedia);
-        // Add the CartMedia to the list
-        lstMedia.add(cartMedia1);
+//        List lstMedia = new ArrayList();
+//        Media media = new Media (5, "abc", 100, "book", 3);
+//        Cart cart = Cart.getCart();
+//        CartMedia cartMedia1 = new CartMedia(media, cart,2, 200); // replace quantity and price with actual values
+//        lstMedia.add(cartMedia1);
+//        System.out.println("Test: "+lstMedia);
+//        // Add the CartMedia to the list
+//        lstMedia.add(cartMedia1);
 //
 ////        // Create a cart media object
 ////        CartMedia cartMedia = new CartMedia(media, 2, 200);
@@ -148,6 +140,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 ////        // Add the cart media to the cart
 //        List<CartMedia> cart = new ArrayList<>();
 //        cart.add(cartMedia);
+        List lstMedia = getBController().getListCartMedia();
 
         try {
             for (Object cm : lstMedia) {
@@ -168,7 +161,6 @@ public class CartScreenHandler extends BaseScreenHandler {
     }
 
     public void setImage(){
-
     }
 
 }

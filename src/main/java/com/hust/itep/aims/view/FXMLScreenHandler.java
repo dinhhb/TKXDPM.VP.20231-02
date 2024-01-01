@@ -16,7 +16,7 @@ public class FXMLScreenHandler {
         this.loader = new FXMLLoader(getClass().getResource(screenPath));
         // Set this class as the controller
         this.loader.setController(this);
-        this.content = (BorderPane) loader.load();
+//        this.content = (BorderPane) loader.load();
     }
 
     public BorderPane getContent() {
