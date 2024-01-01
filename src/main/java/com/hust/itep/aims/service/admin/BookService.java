@@ -81,10 +81,10 @@ public class BookService implements IMediaService{
                     bookStatement.setString(8, book.getBookCategory());
 
                     bookStatement.executeUpdate();
-                    System.out.println("Successfully added media: " + media);
+                    System.out.println("Successfully added book: " + media);
 
                     InformationAlert alert = new InformationAlert();
-                    alert.createAlert("Information Message", null, "Successfully added media" );
+                    alert.createAlert("Information Message", null, "Successfully added book" );
                     alert.show();
                 }
             }
@@ -96,5 +96,115 @@ public class BookService implements IMediaService{
         } finally {
             connection.setAutoCommit(true); // Khôi phục auto-commit
         }
+    }
+
+    public void updateMedia(Media media) throws SQLException {
+        // Start transaction
+        connection.setAutoCommit(false);
+
+        try {
+
+            Book book = (Book) media;
+
+            // Update Media table
+            String mediaSql = "UPDATE Media SET category = ?, price = ?, value = ?, title = ?, description = ?, quantity = ?, importDate = ?, rushOrderSupported = ?, imageUrl = ?, productDimension = ?, barcode = ? WHERE id = ?";
+            try (PreparedStatement mediaStatement = connection.prepareStatement(mediaSql)) {
+                mediaStatement.setString(1, media.getCategory());
+                mediaStatement.setInt(2, media.getPrice());
+                mediaStatement.setInt(3, media.getValue());
+                mediaStatement.setString(4, media.getTitle());
+                mediaStatement.setString(5, media.getDescription());
+                mediaStatement.setInt(6, media.getQuantity());
+
+                java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
+                mediaStatement.setDate(7, sqlDate);
+
+                boolean rushOrderSupported = (media.getRushOrderSupport() != null) ? media.getRushOrderSupport() : false;
+                mediaStatement.setBoolean(8, rushOrderSupported);
+                mediaStatement.setString(9, media.getImageUrl());
+                mediaStatement.setString(10, media.getProductDimension());
+                mediaStatement.setString(11, media.getBarcode());
+                mediaStatement.setInt(12, media.getId());
+
+                ConfirmationAlert confirmationAlert = new ConfirmationAlert();
+                confirmationAlert.createAlert("Confirmation", null, "Are you sure you want to update this media?");
+                confirmationAlert.show();
+
+                if (!confirmationAlert.isConfirmed()) {
+                    throw new SQLException("Cancel updating media");
+                }
+
+                int affectedRows = mediaStatement.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new SQLException("Updating media failed, no rows affected.");
+                }
+
+            }
+
+            String bookSql = "UPDATE Book SET authors = ?, hardCover = ?, publisher = ?, publicationDate = ?, pages = ?, language = ?, bookCategory = ? WHERE id = ?";
+            try (PreparedStatement bookStatement = connection.prepareStatement(bookSql)) {
+                bookStatement.setString(1, book.getAuthors());
+                bookStatement.setString(2, book.getHardCover());
+                bookStatement.setString(3, book.getPublisher());
+
+                if (book.getPublicationDate() != null) {
+                    bookStatement.setDate(4, new java.sql.Date(book.getPublicationDate().getTime()));
+                } else {
+                    bookStatement.setNull(4, java.sql.Types.DATE);
+                }
+
+                bookStatement.setInt(5, book.getPages());
+                bookStatement.setString(6, book.getLanguage());
+                bookStatement.setString(7, book.getBookCategory());
+                bookStatement.setInt(8, book.getId());
+
+                bookStatement.executeUpdate();
+            }
+
+            System.out.println("Successfully updated book: " + media);
+            InformationAlert alert = new InformationAlert();
+            alert.createAlert("Information Message", null, "Successfully updated book" );
+            alert.show();
+
+            connection.commit(); // Commit transaction
+        } catch (SQLException e) {
+            connection.rollback(); // Roll back transaction
+            throw e;
+        } finally {
+            connection.setAutoCommit(true); // Restore auto-commit
+//            System.out.println("Updating media with ID: " + media.getId());
+        }
+    }
+
+    public Book fetchBookFromDatabase(int bookId) {
+        // Assuming 'connection' is your established JDBC connection
+        String sql = "SELECT * FROM Book WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, bookId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Book book = new Book();
+
+                    // Set additional Book fields
+                    book.setAuthors(resultSet.getString("authors"));
+                    book.setHardCover(resultSet.getString("hardCover"));
+                    book.setPublisher(resultSet.getString("publisher"));
+                    book.setLanguage(resultSet.getString("language"));
+                    book.setBookCategory(resultSet.getString("bookCategory"));
+                    book.setPages(resultSet.getInt("pages"));
+                    Date publicationDate = resultSet.getDate("publicationDate");
+                    if (publicationDate != null) {
+                        book.setPublicationDate(publicationDate);
+                    }
+
+                    return book;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching book");
+            e.printStackTrace();
+        }
+        return null; // Return null if book not found or if an exception occurs
     }
 }
