@@ -1,6 +1,6 @@
 package com.hust.itep.aims.service.admin;
 
-import com.hust.itep.aims.entity.media.Book;
+import com.hust.itep.aims.entity.media.CdAndLp;
 import com.hust.itep.aims.entity.media.Media;
 import com.hust.itep.aims.utils.ConfirmationAlert;
 import com.hust.itep.aims.utils.InformationAlert;
@@ -8,11 +8,11 @@ import com.hust.itep.aims.utils.InformationAlert;
 import java.sql.*;
 import java.util.Date;
 
-public class BookService implements IMediaService{
+public class CDAndLPService implements IMediaService{
 
     private final Connection connection;
 
-    public BookService() {
+    public CDAndLPService() {
         this.connection = MediaService.getInstance().getConnection();
     }
 
@@ -22,8 +22,7 @@ public class BookService implements IMediaService{
         connection.setAutoCommit(false);
 
         try {
-            // Xử lý thêm Book, bao gồm thông tin của Media
-            Book book = (Book) media;
+            CdAndLp cdAndLp = (CdAndLp) media;
 
             ConfirmationAlert confirmationAlert = new ConfirmationAlert();
             confirmationAlert.createAlert("Confirmation", null, "Are you sure you want to add this media?");
@@ -36,22 +35,22 @@ public class BookService implements IMediaService{
             String mediaSql = "INSERT INTO Media (category, price, value, title, description, quantity, importDate, rushOrderSupported, imageUrl, productDimension, barcode) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement mediaStatement = connection.prepareStatement(mediaSql, Statement.RETURN_GENERATED_KEYS)) {
                 // Thiết lập các tham số cho Media
-                mediaStatement.setString(1, book.getCategory());
-                mediaStatement.setInt(2, book.getPrice());
-                mediaStatement.setInt(3, book.getValue());
-                mediaStatement.setString(4, book.getTitle());
-                mediaStatement.setString(5, book.getDescription());
-                mediaStatement.setInt(6, book.getQuantity());
+                mediaStatement.setString(1, cdAndLp.getCategory());
+                mediaStatement.setInt(2, cdAndLp.getPrice());
+                mediaStatement.setInt(3, cdAndLp.getValue());
+                mediaStatement.setString(4, cdAndLp.getTitle());
+                mediaStatement.setString(5, cdAndLp.getDescription());
+                mediaStatement.setInt(6, cdAndLp.getQuantity());
 
                 // Đặt ngày hiện tại cho importDate
                 java.sql.Date sqlDate = new java.sql.Date(new Date().getTime());
                 mediaStatement.setDate(7, sqlDate);
 
-                boolean rushOrderSupported = (book.getRushOrderSupport() != null) ? book.getRushOrderSupport() : false;
+                boolean rushOrderSupported = (cdAndLp.getRushOrderSupport() != null) ? cdAndLp.getRushOrderSupport() : false;
                 mediaStatement.setBoolean(8, rushOrderSupported);
-                mediaStatement.setString(9, book.getImageUrl());
-                mediaStatement.setString(10, book.getProductDimension());
-                mediaStatement.setString(11, book.getBarcode());
+                mediaStatement.setString(9, cdAndLp.getImageUrl());
+                mediaStatement.setString(10, cdAndLp.getProductDimension());
+                mediaStatement.setString(11, cdAndLp.getBarcode());
 
                 int affectedRows = mediaStatement.executeUpdate();
 
@@ -62,29 +61,26 @@ public class BookService implements IMediaService{
                 // Lấy ID được tạo tự động
                 try (ResultSet generatedKeys = mediaStatement.getGeneratedKeys()) {
                     if (generatedKeys.next()) {
-                        book.setId(generatedKeys.getInt(1));
+                        cdAndLp.setId(generatedKeys.getInt(1));
                     } else {
                         throw new SQLException("Creating book failed, no ID obtained.");
                     }
                 }
 
-                // Thêm thông tin vào bảng Book
-                String bookSql = "INSERT INTO Book (id, authors, hardCover, publisher, publicationDate, pages, language, bookCategory) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                try (PreparedStatement bookStatement = connection.prepareStatement(bookSql)) {
-                    bookStatement.setInt(1, book.getId());
-                    bookStatement.setString(2, book.getAuthors());
-                    bookStatement.setString(3, book.getHardCover());
-                    bookStatement.setString(4, book.getPublisher());
-                    bookStatement.setDate(5, new java.sql.Date(book.getPublicationDate().getTime()));
-                    bookStatement.setInt(6, book.getPages());
-                    bookStatement.setString(7, book.getLanguage());
-                    bookStatement.setString(8, book.getBookCategory());
-
-                    bookStatement.executeUpdate();
-                    System.out.println("Successfully added book: " + media);
+                // Thêm thông tin vào bảng DVD
+                String dvdSql = "INSERT INTO CD_and_LP (id, artists, recordLabel, trackList, releaseDate, musicType) VALUES (?, ?, ?, ?, ?, ?)";
+                try (PreparedStatement dvdStatement = connection.prepareStatement(dvdSql)) {
+                    dvdStatement.setInt(1, cdAndLp.getId());
+                    dvdStatement.setString(2, cdAndLp.getArtists());
+                    dvdStatement.setString(3, cdAndLp.getRecordLabel());
+                    dvdStatement.setString(4, cdAndLp.getTrackList());
+                    dvdStatement.setDate(5, new java.sql.Date(cdAndLp.getReleaseDate().getTime()));
+                    dvdStatement.setString(6, cdAndLp.getMusicType());
+                    dvdStatement.executeUpdate();
+                    System.out.println("Successfully added LP/CD: " + media);
 
                     InformationAlert alert = new InformationAlert();
-                    alert.createAlert("Information Message", null, "Successfully added book" );
+                    alert.createAlert("Information Message", null, "Successfully added LP/CD" );
                     alert.show();
                 }
             }
@@ -104,7 +100,7 @@ public class BookService implements IMediaService{
 
         try {
 
-            Book book = (Book) media;
+            CdAndLp cdAndLp = (CdAndLp) media;
 
             // Update Media table
             String mediaSql = "UPDATE Media SET category = ?, price = ?, value = ?, title = ?, description = ?, quantity = ?, importDate = ?, rushOrderSupported = ?, imageUrl = ?, productDimension = ?, barcode = ? WHERE id = ?";
@@ -141,29 +137,27 @@ public class BookService implements IMediaService{
 
             }
 
-            String bookSql = "UPDATE Book SET authors = ?, hardCover = ?, publisher = ?, publicationDate = ?, pages = ?, language = ?, bookCategory = ? WHERE id = ?";
-            try (PreparedStatement bookStatement = connection.prepareStatement(bookSql)) {
-                bookStatement.setString(1, book.getAuthors());
-                bookStatement.setString(2, book.getHardCover());
-                bookStatement.setString(3, book.getPublisher());
+            String cdAndLpSql = "UPDATE CD_and_LP SET artists = ?, recordLabel = ?, trackList = ?, releaseDate = ?, musicType = ? WHERE id = ?";
+            try (PreparedStatement cdAndLpStatement = connection.prepareStatement(cdAndLpSql)) {
+                cdAndLpStatement.setString(1, cdAndLp.getArtists());
+                cdAndLpStatement.setString(2, cdAndLp.getRecordLabel());
+                cdAndLpStatement.setString(3, cdAndLp.getTrackList());
 
-                if (book.getPublicationDate() != null) {
-                    bookStatement.setDate(4, new java.sql.Date(book.getPublicationDate().getTime()));
+                if (cdAndLp.getReleaseDate() != null) {
+                    cdAndLpStatement.setDate(4, new java.sql.Date(cdAndLp.getReleaseDate().getTime()));
                 } else {
-                    bookStatement.setNull(4, java.sql.Types.DATE);
+                    cdAndLpStatement.setNull(4, java.sql.Types.DATE);
                 }
 
-                bookStatement.setInt(5, book.getPages());
-                bookStatement.setString(6, book.getLanguage());
-                bookStatement.setString(7, book.getBookCategory());
-                bookStatement.setInt(8, book.getId());
+                cdAndLpStatement.setString(5, cdAndLp.getMusicType());
+                cdAndLpStatement.setInt(6, cdAndLp.getId());
 
-                bookStatement.executeUpdate();
+                cdAndLpStatement.executeUpdate();
             }
 
-            System.out.println("Successfully updated book: " + media);
+            System.out.println("Successfully updated CD/ LP: " + media);
             InformationAlert alert = new InformationAlert();
-            alert.createAlert("Information Message", null, "Successfully updated book" );
+            alert.createAlert("Information Message", null, "Successfully updated CD/ LP" );
             alert.show();
 
             connection.commit(); // Commit transaction
@@ -176,35 +170,31 @@ public class BookService implements IMediaService{
         }
     }
 
-    public Book fetchBookFromDatabase(int bookId) {
+    public CdAndLp fetchCDAndLPFromDatabase(int cdAndLpId) {
         // Assuming 'connection' is your established JDBC connection
-        String sql = "SELECT * FROM Book WHERE id = ?";
+        String sql = "SELECT * FROM CD_and_LP WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, bookId);
+            statement.setInt(1, cdAndLpId);
 
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    Book book = new Book();
+                    CdAndLp cdAndLp = new CdAndLp();
 
-                    // Set additional Book fields
-                    book.setAuthors(resultSet.getString("authors"));
-                    book.setHardCover(resultSet.getString("hardCover"));
-                    book.setPublisher(resultSet.getString("publisher"));
-                    book.setLanguage(resultSet.getString("language"));
-                    book.setBookCategory(resultSet.getString("bookCategory"));
-                    book.setPages(resultSet.getInt("pages"));
-                    Date publicationDate = resultSet.getDate("publicationDate");
-                    if (publicationDate != null) {
-                        book.setPublicationDate(publicationDate);
+                    cdAndLp.setArtists(resultSet.getString("artists"));
+                    cdAndLp.setMusicType(resultSet.getString("musicType"));
+                    cdAndLp.setRecordLabel(resultSet.getString("recordLabel"));
+                    cdAndLp.setTrackList(resultSet.getString("trackList"));
+                    Date releasedDate = resultSet.getDate("releaseDate");
+                    if (releasedDate != null) {
+                        cdAndLp.setReleaseDate(releasedDate);
                     }
-
-                    return book;
+                    return cdAndLp;
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error fetching book");
+            System.out.println("Error fetching DVD");
             e.printStackTrace();
         }
-        return null; // Return null if book not found or if an exception occurs
+        return null;
     }
 }
