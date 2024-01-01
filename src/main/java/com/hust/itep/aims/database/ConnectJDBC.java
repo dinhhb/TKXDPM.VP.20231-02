@@ -25,18 +25,6 @@ public class ConnectJDBC {
             System.out.println(e.getMessage());
         }
         return conn;
-//        try{
-//            Class.forName("com.mysql.jdbc.Driver");
-//            Properties properties = new Properties();
-//            properties.setProperty("user", "root");
-//            properties.setProperty("password", "Dinh2612");
-//            properties.setProperty("useSSL", "false");
-//            Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/aims?useSSL=false", properties);
-//            return connect;
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        return null;
     }
 }
 

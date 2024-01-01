@@ -22,9 +22,12 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.logging.Logger;
 
 
 public class MediaHandler extends FXMLScreenHandler {
+
+    private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
 
     @FXML
     protected HBox hboxMedia;
@@ -34,8 +37,9 @@ public class MediaHandler extends FXMLScreenHandler {
 
     @FXML
     protected Label labelOutOfStock;
-//    @FXML
-//    protected VBox spinnerFX;
+
+    @FXML
+    protected Label quantity;
 
     @FXML
     protected Label title;
@@ -67,6 +71,8 @@ public class MediaHandler extends FXMLScreenHandler {
     private void setMediaInfo() {
         title.setText(cartMedia.getMedia().getTitle());
         price.setText(Utils.getCurrencyFormat(cartMedia.getPrice()));
+        quantity.setText(String.valueOf(cartMedia.getQuantity()));
+
 //        File file = new File(cartMedia.getMedia().getImageUrl());
 //        Image im = new Image(file.toURI().toString());
 //        image.setImage(im);
@@ -95,9 +101,9 @@ public class MediaHandler extends FXMLScreenHandler {
             try {
                 int numOfProd = this.spinner.getValue();
                 int remainQuantity = cartMedia.getMedia().getQuantity();
-//                LOGGER.info("NumOfProd: " + numOfProd + " -- remainOfProd: " + remainQuantity);
+                LOGGER.info("NumOfProd: " + numOfProd + " -- remainOfProd: " + remainQuantity);
                 if (numOfProd > remainQuantity){
-//                    LOGGER.info("product " + cartMedia.getMedia().getTitle() + " only remains " + remainQuantity + " (required " + numOfProd + ")");
+                    LOGGER.info("product " + cartMedia.getMedia().getTitle() + " only remains " + remainQuantity + " (required " + numOfProd + ")");
                     labelOutOfStock.setText("Sorry, Only " + remainQuantity + " remain in stock");
                     spinner.getValueFactory().setValue(remainQuantity);
                     numOfProd = remainQuantity;
@@ -117,7 +123,5 @@ public class MediaHandler extends FXMLScreenHandler {
             }
 
         });
-//        spinnerFX.setAlignment(Pos.CENTER);
-//        spinnerFX.getChildren().add(this.spinner);
     }
 }

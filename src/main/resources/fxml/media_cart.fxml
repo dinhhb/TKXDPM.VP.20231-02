@@ -17,14 +17,16 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="129.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
     <center>
-    <HBox fx:id="hboxMedia" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1165.0" style="-fx-background-color: fff; -fx-background-radius: 20px;">
+    <HBox fx:id="hboxMedia" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1366.0" style="-fx-background-color: fff; -fx-background-radius: 20px;">
         <children>
             <Pane prefHeight="100.0" prefWidth="70.0" />
-            <ImageView fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="image" fitHeight="100.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                 <image>
-                    <!--                            <Image url="@DaiSo.jpg" />-->
+                    <Image url="@../assets/images/2.png" />
                 </image>
                 <HBox.margin>
                     <Insets />
@@ -43,15 +45,14 @@
                     <Font name="SVN-Linux Libertine bold" size="18.0" />
                 </font>
             </Label>
-<!--            <Label fx:id="currency" prefHeight="23.0" prefWidth="180.0" text="VND" textAlignment="CENTER">-->
-<!--                <font>-->
-<!--                    <Font name="SVN-Linux Libertine bold" size="18.0" />-->
-<!--                </font>-->
-<!--            </Label>-->
-            <ChoiceBox prefHeight="26.0" prefWidth="114.0" />
-            <Button fx:id="deleteBtn" alignment="BOTTOM_RIGHT" prefHeight="23.0" prefWidth="354.0" text="Xóa" textAlignment="CENTER" textFill="#ff3c3c">
+            <Label fx:id="quantity" prefHeight="23.0" prefWidth="180.0" text="5" textAlignment="CENTER">
                 <font>
-                    <Font name="SVN-Linux Libertine" size="18.0" />
+                    <Font name="SVN-Linux Libertine bold" size="18.0" />
+                </font>
+            </Label>
+            <Button fx:id="deleteBtn" alignment="CENTER" prefHeight="23.0" prefWidth="100.0" text="Xóa" textAlignment="CENTER" textFill="#ff3c3c">
+                <font>
+                    <Font name="SVN-Linux Libertine" size="16.0" />
                 </font>
             </Button>
         </children>
@@ -66,3 +67,4 @@
 <!--        </children>-->
     </center>
 </BorderPane>
+</AnchorPane>

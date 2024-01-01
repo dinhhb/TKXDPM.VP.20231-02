@@ -1,6 +1,7 @@
 package com.hust.itep.aims.view.shipping;
 
 
+import com.hust.itep.aims.view.invoice.InvoiceHandler;
 import com.hust.itep.aims.controller.PlaceOrderController;
 import com.hust.itep.aims.entity.order.Order;
 import com.hust.itep.aims.entity.shipping.DeliveryInfo;
@@ -11,14 +12,14 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
@@ -74,8 +75,6 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 
 	}
 
-
-
 	public void preprocessDeliveryInfo() throws IOException, InterruptedException {
 		// add info to messages
 		HashMap<String, String> messages = new HashMap<>();
@@ -101,5 +100,12 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 	}
 
 
-
+	@FXML
+	void submitDeliveryInfo(MouseEvent event) throws IOException, InterruptedException, SQLException {
+		// validate delivery info and prepare order info
+		preprocessDeliveryInfo();
+		// create invoice screen
+		InvoiceHandler test = new InvoiceHandler();
+		test.run();
+	}
 }

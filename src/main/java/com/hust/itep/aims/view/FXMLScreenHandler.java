@@ -3,6 +3,7 @@ package com.hust.itep.aims.view;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.File;
@@ -10,16 +11,16 @@ import java.io.IOException;
 
 public class FXMLScreenHandler {
     protected FXMLLoader loader;
-    protected BorderPane content;
+    protected AnchorPane content;
 
     public FXMLScreenHandler(String screenPath) throws IOException {
         this.loader = new FXMLLoader(getClass().getResource(screenPath));
         // Set this class as the controller
         this.loader.setController(this);
-//        this.content = (BorderPane) loader.load();
+        this.content = (AnchorPane) loader.load();
     }
 
-    public BorderPane getContent() {
+    public AnchorPane getContent() {
         return this.content;
     }
 

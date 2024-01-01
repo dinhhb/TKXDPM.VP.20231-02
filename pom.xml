@@ -76,6 +76,13 @@
             <artifactId>flatlaf</artifactId>
             <version>3.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.bean-matchers</groupId>
+            <artifactId>bean-matchers</artifactId>
+            <version>0.9</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 

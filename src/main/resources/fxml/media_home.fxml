@@ -11,10 +11,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.BorderPane?>
 <AnchorPane prefHeight="211.0" prefWidth="298.0" style="-fx-border-color: #ccd9ff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="mediaImage" fitHeight="152.0" fitWidth="160.0" layoutX="14.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
          <image>
+            <Image url="@../assets/images/1.png" />
          </image>
       </ImageView>
       <Pane layoutX="200.0" layoutY="-1.0" prefHeight="210.0" prefWidth="110.0">

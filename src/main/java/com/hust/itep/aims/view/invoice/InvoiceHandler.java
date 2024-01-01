@@ -1,41 +1,35 @@
-package com.hust.itep.aims;
+package com.hust.itep.aims.view.invoice;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLaf;
 
-import com.hust.itep.aims.database.ConnectJDBC;
+import com.hust.itep.aims.dao.order.OrderDAO;
 import com.hust.itep.aims.service.EventCellInputChange;
 import com.hust.itep.aims.service.QtyCellEditor;
 import com.hust.itep.aims.entity.media.Media;
+
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
-
-public class Test extends javax.swing.JFrame {
+public class InvoiceHandler extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTotal;
     private javax.swing.JTable table;
-    public Test() {
+    public InvoiceHandler() throws SQLException {
         initComponents();
-        testData();
+        setData();
     }
-    private void testData() {
-//        try {
-//            ReportManager.getInstance().compileReport();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+    private void setData() throws SQLException {
         table.getColumnModel().getColumn(3).setCellEditor(new QtyCellEditor(new EventCellInputChange() {
             @Override
             public void inputChanged() {
@@ -75,40 +69,14 @@ public class Test extends javax.swing.JFrame {
             }
         });
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        Connection conn = null;
-        try {
-            String sql = "select  Media.title, Order_Media.price, Media.category, Order_Media.Quantity\n" +
-                    "from Order_Media\n" +
-                    "LEFT JOIN media\n" +
-                    "on Order_Media.mediaId = media.id\n" +
-                    "where orderId = 1\n";
-            conn = ConnectJDBC.getConnection();
-            Statement stmt = conn.createStatement();
-            // Get data
-            ResultSet rs = stmt.executeQuery(sql);
-            int i = 1;
-            int sum = 0;
-            while (rs.next()) {
-                model.addRow(new Media(i,
-                        rs.getString("title"),
-                        rs.getInt("price"),
-                        rs.getString("category"),
-                        rs.getInt("quantity")).toTableRow(table.getRowCount() + 1));
-                i++;
-            }
-            sumAmount();
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try{
-                if(conn != null){
-                    conn.close();
-                    System.out.println("Close successful !");
-                }
-            } catch(SQLException e){
-                System.out.println(e.getMessage());
-            }
+        List<Media> medium = new ArrayList<>();
+        medium = new OrderDAO().getOrder(1);
+        int i = 0;
+        for (Media media : medium) {
+            model.addRow(new Media(i, media.getTitle(), media.getPrice(), media.getCategory(), media.getQuantity()).toTableRow(table.getRowCount() + 1));
+            i++;
         }
+        sumAmount();
     }
 
     private void sumAmount() {
@@ -204,43 +172,18 @@ public class Test extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-//    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-//        try {
-//            List<FieldReportPayment> fields = new ArrayList<>();
-//            for (int i = 0; i < table.getRowCount(); i++) {
-//                Media data = (Media) table.getValueAt(i, 0);
-//
-//                fields.add(new FieldReportPayment(data.getTitle(), data.getPrice(),data.getCategory(), data.getQuantity()));
-//            }
-//            ParameterReportPayment dataprint = new ParameterReportPayment("Admin", "MR A", lbTotal.getText(), generateQrcode(), fields);
-//            ReportManager.getInstance().printReportPayment(dataprint);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }//GEN-LAST:event_jButton1ActionPerformed
 
-//    private InputStream generateQrcode() throws WriterException, IOException {
-//        NumberFormat nf = new DecimalFormat("0000000");
-//        Random ran = new Random();
-//        String invoice = nf.format(ran.nextInt(9999999) + 1);
-//        Map<EncodeHintType, Object> hints = new HashMap<>();
-//        hints.put(EncodeHintType.MARGIN, 0);
-//        BitMatrix bitMatrix = new MultiFormatWriter().encode(invoice, BarcodeFormat.QR_CODE, 100, 100, hints);
-//        BufferedImage image = MatrixToImageWriter.toBufferedImage(bitMatrix);
-//        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-//        ImageIO.write(image, "png", outputStream);
-//        return new ByteArrayInputStream(outputStream.toByteArray());
-//    }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    public static void run() {
         FlatLaf.registerCustomDefaultsSource("style");
         FlatDarculaLaf.setup();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Test().setVisible(true);
+                try {
+                    new InvoiceHandler().setVisible(true);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
