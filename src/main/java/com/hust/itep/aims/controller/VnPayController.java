@@ -1,10 +1,14 @@
 package com.hust.itep.aims.controller;
+import java.awt.*;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.net.URLEncoder;
 import java.util.*;
+import java.net.*;
 import java.text.SimpleDateFormat;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -77,6 +81,21 @@ public class VnPayController {
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = vnp_Url + "?" + queryUrl;
         return paymentUrl;
+    }
+    public static void openURL(String paymentURL)
+    {
+        try {
+            Desktop desktop = java.awt.Desktop.getDesktop();
+            URI uri = new URI(paymentURL);
+
+            if (Desktop.isDesktopSupported() && desktop.isSupported(Desktop.Action.BROWSE)) {
+                desktop.browse(uri);
+            } else {
+                System.out.println("Desktop browsing is not supported on this platform.");
+            }
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
     public static String hmacSHA512(final String key, final String data) {
         try {
