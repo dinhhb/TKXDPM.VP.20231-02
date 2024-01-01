@@ -106,7 +106,7 @@ public class MediaHandler extends BaseScreenHandler {
         Image image = new Image(file.toURI().toString());
         mediaImage.setFitHeight(160);
         mediaImage.setFitWidth(152);
-        mediaImage.setImage(image);
+//        mediaImage.setImage(image);
 
         mediaTitle.setText(media.getTitle());
         mediaPrice.setText(Utils.getCurrencyFormat(media.getPrice()));

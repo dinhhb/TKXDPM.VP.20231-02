@@ -3,6 +3,7 @@ package com.hust.itep.aims.view.invoice;
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatLaf;
 
+import com.hust.itep.aims.controller.VnPayController;
 import com.hust.itep.aims.dao.order.OrderDAO;
 import com.hust.itep.aims.service.EventCellInputChange;
 import com.hust.itep.aims.service.QtyCellEditor;
@@ -13,6 +14,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class InvoiceHandler extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTotal;
     private javax.swing.JTable table;
+    int total;
     public InvoiceHandler() throws SQLException {
         initComponents();
         setData();
@@ -80,7 +83,6 @@ public class InvoiceHandler extends javax.swing.JFrame {
     }
 
     private void sumAmount() {
-        int total = 0;
         for (int i = 0; i < table.getRowCount(); i++) {
             Media item = (Media) table.getValueAt(i, 0);
             total += item.getPrice()*item.getQuantity();
@@ -129,11 +131,18 @@ public class InvoiceHandler extends javax.swing.JFrame {
         lbTotal.setText("0.0");
 
         jButton1.setText("Payment");
-//        jButton1.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                jButton1ActionPerformed(evt);
-//            }
-//        });
+       jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VnPayController vnpayController = new VnPayController();
+                try {
+                    String paymentUrl = vnpayController.createPaymentUrl("1", total * 100000);
+                    vnpayController.openURL(paymentUrl);
+                } catch (UnsupportedEncodingException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

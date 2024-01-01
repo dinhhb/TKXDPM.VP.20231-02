@@ -82,7 +82,7 @@ public class VnPayController {
         String paymentUrl = vnp_Url + "?" + queryUrl;
         return paymentUrl;
     }
-    public static void openURL(String paymentURL)
+    public void openURL(String paymentURL)
     {
         try {
             Desktop desktop = java.awt.Desktop.getDesktop();
