@@ -2,6 +2,7 @@ package com.hust.itep.aims.controller.admin;
 
 import com.hust.itep.aims.entity.media.Book;
 import com.hust.itep.aims.entity.media.Media;
+import com.hust.itep.aims.service.admin.BookService;
 import com.hust.itep.aims.service.admin.MediaService;
 import com.hust.itep.aims.utils.ErrorAlert;
 import javafx.fxml.FXML;
@@ -20,13 +21,16 @@ public class BookScreen implements MediaScreen {
     private DataChangedListener dataChangedListener;
     MediaService mediaService = MediaService.getInstance();
 
+    BookService bookService;
+
 
     public BookScreen() {
     }
 
-    public BookScreen(Media media, DataChangedListener dataChangedListener) {
+    public BookScreen(Media media, DataChangedListener dataChangedListener, BookService bookService) {
         this.media = media;
         this.dataChangedListener = dataChangedListener;
+        this.bookService = bookService;
     }
 
     @FXML
@@ -67,7 +71,7 @@ public class BookScreen implements MediaScreen {
     private void setBookFields() {
         try {
             // Assuming media.getId() returns the ID of the book you want to fetch
-            Book book = mediaService.fetchBookFromDatabase(media.getId());
+            Book book = bookService.fetchBookFromDatabase(media.getId());
 
             if (book != null) {
                 book_author.setText(book.getAuthors());
