@@ -227,4 +227,63 @@ This is a Capstone's source code for Software Design and Construction project
 </details>
 </details>
 
+---
+
+<details>
+  <summary>Week 5: 26/12/2023~01/01/2024 </summary>
+<br>
+
+<details>
+
+<summary>Cao Thành Duy</summary>
+
+- Assigned tasks:
+    - Update VnPayController 
+    - Update diagrams
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/11
+    - Specific implementation details:
+        - Update VnPayController to jump directly to payment URL
+        - Update sequence diagra, acticity diagram and class diagram
+
+
+</details>
+
+<details>
+<summary>Hà Bửu Định</summary>
+
+- Assigned tasks:
+    - Refactor code
+    - Revise charts and document requirements
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/12
+    - Specific implementation details:
+        - Update view and controller for cart
+        - Revise charts and document requirements
+
+
+</details>
+
+
+<details>
+<summary>Nguyễn Đình Dương</summary>
+
+- Assigned tasks:
+    - Update and fix code
+    - Update diagrams
+
+- Implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/10
+    - Specific implementation details:
+        - Update view and controller for cart 
+        - Update view and controller for shipping 
+        - Update view and controller for home
+        - Update diagrams Data modeling, Usecase
+
+</details>
+
+</details>
+
 
