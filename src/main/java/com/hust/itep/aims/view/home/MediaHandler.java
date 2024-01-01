@@ -6,6 +6,7 @@ import com.hust.itep.aims.entity.cart.*;
 import com.hust.itep.aims.utils.Utils;
 import com.hust.itep.aims.view.FXMLScreenHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,22 +26,22 @@ import java.util.logging.Logger;
 public class MediaHandler extends FXMLScreenHandler {
 
     @FXML
-    protected ImageView mediaImage;
+    private ImageView mediaImage;
 
     @FXML
-    protected Label mediaTitle;
+    private Label mediaTitle;
 
     @FXML
-    protected Label mediaPrice;
+    private Label mediaPrice;
 
     @FXML
-    protected Label mediaAvail;
+    private Label mediaAvail;
 
     @FXML
-    protected Spinner<Integer> spinnerChangeNumber;
+    private Spinner<Integer> spinnerChangeNumber;
 
     @FXML
-    protected Button addToCartBtn;
+    private Button addToCartBtn;
 
     private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
     private Media media;
@@ -48,7 +50,10 @@ public class MediaHandler extends FXMLScreenHandler {
     public MediaHandler(String screenPath, Media media, HomeScreenHandler home) throws SQLException, IOException{
         super(screenPath);
         this.media = media;
-        this.home = home;
+//        this.home = home;
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(screenPath));
+        loader.setController(this);
+        loader.load();
         addToCartBtn.setOnMouseClicked(event -> {
             try {
                 if (spinnerChangeNumber.getValue() > media.getQuantity()) {

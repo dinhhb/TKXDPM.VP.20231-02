@@ -9,6 +9,7 @@ import com.hust.itep.aims.utils.Utils;
 import com.hust.itep.aims.view.BaseScreenHandler;
 import com.hust.itep.aims.view.cart.CartScreenHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -31,13 +32,13 @@ public class HomeScreenHandler extends BaseScreenHandler {
     public static Logger LOGGER = Utils.getLogger(HomeScreenHandler.class.getName());
 
     @FXML
-    private Label numMediaInCart;
+    private static Label numMediaInCart;
 
     @FXML
     private ImageView aimsImage;
 
     @FXML
-    private ImageView cartImage;
+    private Button cartImage;
 
     @FXML
     private VBox vboxMedia1;
@@ -58,42 +59,10 @@ public class HomeScreenHandler extends BaseScreenHandler {
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
-    }
-
-    public Label getNumMediaCartLabel(){
-        return this.numMediaInCart;
-    }
-
-    public HomeController getBController() {
-        return (HomeController) super.getBController();
-    }
-    @Override
-    public void show() {
-        initialize();
-        numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
-        super.show();
-    }
-
-
-    public void initialize() {
-        setBController(new HomeController());
-        try{
-            List medium = getBController().getAllMedia();
-            this.homeItems = new ArrayList<>();
-            for (Object object : medium) {
-                Media media = (Media)object;
-                MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
-                this.homeItems.add(m1);
-            }
-        }catch (SQLException | IOException e){
-            LOGGER.info("Errors occured: " + e.getMessage());
-            e.printStackTrace();
-        }
-
-        aimsImage.setOnMouseClicked(e -> {
-            addMediaHome(this.homeItems);
-        });
-
+        setupData();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(screenPath));
+        loader.setController(this);
+        loader.load();
         cartImage.setOnMouseClicked(e -> {
             CartScreenHandler cartScreen;
             try {
@@ -106,22 +75,57 @@ public class HomeScreenHandler extends BaseScreenHandler {
                 LOGGER.info("Error"+e1);
             }
         });
-        addMediaHome(this.homeItems);
+        addMediaHome(homeItems);
         addMenuItem(0, "Book", splitMenuBtnSearch);
         addMenuItem(1, "DVD", splitMenuBtnSearch);
         addMenuItem(2, "CD", splitMenuBtnSearch);
     }
 
-    public void setImage(){
-        // fix image path caused by fxml
-        File file1 = new File(Configs.IMAGE_PATH + "/" + "Logo.png");
-        Image img1 = new Image(file1.toURI().toString());
-        aimsImage.setImage(img1);
-
-        File file2 = new File(Configs.IMAGE_PATH + "/" + "Logo.png");
-        Image img2 = new Image(file2.toURI().toString());
-        cartImage.setImage(img2);
+    public Label getNumMediaCartLabel(){
+        return this.numMediaInCart;
     }
+
+    public HomeController getBController() {
+        return (HomeController) super.getBController();
+    }
+    @Override
+    public void show() {
+        numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
+        super.show();
+    }
+
+
+    public void setupData() {
+        setBController(new HomeController());
+        try{
+            List medium = getBController().getAllMedia();
+            homeItems = new ArrayList<>();
+            for (Object object : medium) {
+                Media media = (Media) object;
+                MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
+                homeItems.add(m1);
+            }
+        }catch (SQLException | IOException e){
+            LOGGER.info("Errors occured: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+//        aimsImage.setOnMouseClicked(e -> {
+//            addMediaHome(this.homeItems);
+//        });
+    }
+
+//    public void setImage(){
+//        // fix image path caused by fxml
+////        File file1 = new File(Configs.IMAGE_PATH + "/" + "Logo.png");
+//        File file1 = new File(Configs.IMAGE_PATH);
+//        Image img1 = new Image(file1.toURI().toString());
+//        aimsImage.setImage(img1);
+//
+//        File file2 = new File(Configs.IMAGE_PATH);
+//        Image img2 = new Image(file2.toURI().toString());
+//        cartImage.setImage(img2);
+//    }
 
 
     /**

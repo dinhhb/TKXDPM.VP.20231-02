@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Button?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="788.0" prefWidth="1326.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox prefHeight="104.0" prefWidth="1326.0" style="-fx-background-color: #ccebff; -fx-border-color: #33adff;">
@@ -59,10 +60,10 @@
                     <children>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                             <children>
-                                <ImageView fx:id="cartImage" fitHeight="75.0" fitWidth="64.0" layoutX="14.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                                    <image>
-                                    </image>
-                                </ImageView>
+                                <Button fx:id="cartImage"  mnemonicParsing="false" layoutX="14.0" layoutY="19.0" pickOnBounds="true" style="-fx-cursor: hand;" text="cart">
+<!--                                    <image>-->
+<!--                                    </image>-->
+                                </Button>
                                 <Label fx:id="numMediaInCart" layoutX="24.0" layoutY="11.0" prefHeight="16.0" prefWidth="64.0" text="0 media" textFill="#5091e6" />
                             </children>
                         </Pane>
