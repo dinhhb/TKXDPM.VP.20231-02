@@ -7,6 +7,7 @@ import com.hust.itep.aims.entity.order.Order;
 import com.hust.itep.aims.entity.order.OrderMedia;
 import com.hust.itep.aims.entity.shipping.DeliveryInfo;
 import com.hust.itep.aims.service.CartService;
+import com.hust.itep.aims.utils.ErrorAlert;
 import com.hust.itep.aims.utils.Utils;
 
 import java.io.IOException;
@@ -63,14 +64,23 @@ public class PlaceOrderController extends BaseController {
 
         if (!valController.validateName(info.get("name"))) {
             System.out.println("Invalid name!");
+            ErrorAlert errorAlert = new ErrorAlert();
+            errorAlert.createAlert("Error Message", null, "Invalid name!");
+            errorAlert.show();
             throw new RuntimeException("Invalid name! Error!" );
         }
         if (!valController.validatePhoneNumber(info.get("phone"))) {
             System.out.println("Invalid phone number!");
+            ErrorAlert errorAlert = new ErrorAlert();
+            errorAlert.createAlert("Error Message", null, "Invalid phone number!");
+            errorAlert.show();
             throw new RuntimeException("Invalid phone number! Error!" );
         }
         if (!valController.validateAddress(info.get("address"))) {
             System.out.println("Invalid address!");
+            ErrorAlert errorAlert = new ErrorAlert();
+            errorAlert.createAlert("Error Message", null, "Invalid address!");
+            errorAlert.show();
             throw new RuntimeException("Invalid address! Error!" );
         }
         return 1;

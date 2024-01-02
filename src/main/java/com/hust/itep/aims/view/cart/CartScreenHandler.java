@@ -5,6 +5,7 @@ import com.hust.itep.aims.controller.ViewCartController;
 import com.hust.itep.aims.entity.cart.CartMedia;
 import com.hust.itep.aims.entity.order.Order;
 import com.hust.itep.aims.utils.Configs;
+import com.hust.itep.aims.utils.ErrorAlert;
 import com.hust.itep.aims.utils.Utils;
 import com.hust.itep.aims.view.BaseScreenHandler;
 import com.hust.itep.aims.view.home.HomeScreenHandler;
@@ -65,6 +66,9 @@ public class CartScreenHandler extends BaseScreenHandler {
                 requestToPlaceOrder();
             } catch (Exception exp) {
                 LOGGER.severe("Cannot place the order, see the logs");
+                ErrorAlert errorAlert = new ErrorAlert();
+                errorAlert.createAlert("Error Message", null, "Cannot place the order");
+                errorAlert.show();
                 exp.printStackTrace();
                 throw new RuntimeException("Cannot place the order");
             }

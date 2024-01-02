@@ -132,6 +132,7 @@ public class BookScreen implements MediaScreen {
             newBook.setRushOrderSupport(media.getRushOrderSupport());
             newBook.setImageUrl(media.getImageUrl());
 
+
             newBook.setAuthors(author);
             newBook.setHardCover(hardCover);
             newBook.setPublisher(publisher);

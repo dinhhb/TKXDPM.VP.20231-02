@@ -4,6 +4,7 @@ package com.hust.itep.aims.view.home;
 import com.hust.itep.aims.entity.media.*;
 import com.hust.itep.aims.entity.cart.*;
 import com.hust.itep.aims.utils.Configs;
+import com.hust.itep.aims.utils.ErrorAlert;
 import com.hust.itep.aims.utils.Utils;
 import com.hust.itep.aims.view.BaseScreenHandler;
 import com.hust.itep.aims.view.FXMLScreenHandler;
@@ -74,6 +75,9 @@ public class MediaHandler extends BaseScreenHandler {
                 try {
                     String message = "Not enough media:\nRequired: " + spinnerChangeNumber.getValue() + "\nAvail: " + media.getQuantity();
                     LOGGER.severe(message);
+                    ErrorAlert errorAlert = new ErrorAlert();
+                    errorAlert.createAlert("Error Message", null, message);
+                    errorAlert.show();
                 } catch (Exception e) {
                     LOGGER.severe("Cannot add media to cart: ");
                 }
