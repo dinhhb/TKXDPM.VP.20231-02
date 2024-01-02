@@ -21,7 +21,6 @@ public class App1 extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-
                     HomeScreenHandler homeHandler = new HomeScreenHandler(primaryStage, Configs.HOME_PATH);
                     homeHandler.setScreenTitle("Home Screen");
 //                    homeHandler.setImage();
@@ -31,8 +30,7 @@ public class App1 extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void run() {
         launch();
     }
-
 }

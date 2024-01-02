@@ -1,6 +1,7 @@
 package com.hust.itep.aims.controller;
 
 
+import com.hust.itep.aims.App1;
 import com.hust.itep.aims.database.ConnectJDBC;
 import com.hust.itep.aims.entity.admin.AdminSession;
 import javafx.fxml.FXML;
@@ -77,17 +78,9 @@ public class LoginController implements Initializable {
                         stage.setScene(scene);
                         stage.show();
                     } else{
-                        Parent root = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
-
                         Stage stage = new Stage();
-                        Scene scene = new Scene(root);
-
-                        stage.setTitle("AIMS");
-                        stage.setMinWidth(1600);
-                        stage.setMinHeight(600);
-
-                        stage.setScene(scene);
-                        stage.show();
+                        App1 app1 = new App1();
+                        app1.start(stage);
                     }
 
                 }else{ // neu failed hien ra error message
