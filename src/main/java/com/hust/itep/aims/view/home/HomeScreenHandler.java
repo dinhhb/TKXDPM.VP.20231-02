@@ -9,7 +9,9 @@ import com.hust.itep.aims.utils.Utils;
 import com.hust.itep.aims.view.BaseScreenHandler;
 import com.hust.itep.aims.view.cart.CartScreenHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,7 +39,7 @@ public class HomeScreenHandler extends BaseScreenHandler {
     private ImageView aimsImage;
 
     @FXML
-    private ImageView cartImage;
+    private Button cartImage;
 
     @FXML
     private VBox vboxMedia1;
@@ -58,6 +60,7 @@ public class HomeScreenHandler extends BaseScreenHandler {
 
     public HomeScreenHandler(Stage stage, String screenPath) throws IOException{
         super(stage, screenPath);
+        setupData();
     }
 
     public Label getNumMediaCartLabel(){
@@ -69,21 +72,20 @@ public class HomeScreenHandler extends BaseScreenHandler {
     }
     @Override
     public void show() {
-        initialize();
         numMediaInCart.setText(String.valueOf(Cart.getCart().getListMedia().size()) + " media");
         super.show();
     }
 
 
-    public void initialize() {
+    public void setupData() {
         setBController(new HomeController());
         try{
             List medium = getBController().getAllMedia();
-            this.homeItems = new ArrayList<>();
+            homeItems = new ArrayList<>();
             for (Object object : medium) {
-                Media media = (Media)object;
+                Media media = (Media) object;
                 MediaHandler m1 = new MediaHandler(Configs.HOME_MEDIA_PATH, media, this);
-                this.homeItems.add(m1);
+                homeItems.add(m1);
             }
         }catch (SQLException | IOException e){
             LOGGER.info("Errors occured: " + e.getMessage());
@@ -106,21 +108,16 @@ public class HomeScreenHandler extends BaseScreenHandler {
                 LOGGER.info("Error"+e1);
             }
         });
-        addMediaHome(this.homeItems);
+        addMediaHome(homeItems);
         addMenuItem(0, "Book", splitMenuBtnSearch);
-        addMenuItem(1, "DVD", splitMenuBtnSearch);
-        addMenuItem(2, "CD", splitMenuBtnSearch);
+        addMenuItem(1, "Dvd", splitMenuBtnSearch);
+        addMenuItem(2, "CdAndLP", splitMenuBtnSearch);
     }
 
     public void setImage(){
-        // fix image path caused by fxml
         File file1 = new File(Configs.IMAGE_PATH + "/" + "Logo.png");
         Image img1 = new Image(file1.toURI().toString());
         aimsImage.setImage(img1);
-
-        File file2 = new File(Configs.IMAGE_PATH + "/" + "Logo.png");
-        Image img2 = new Image(file2.toURI().toString());
-        cartImage.setImage(img2);
     }
 
 
@@ -139,7 +136,10 @@ public class HomeScreenHandler extends BaseScreenHandler {
                 VBox vBox = (VBox) node;
                 while(vBox.getChildren().size()<3 && !mediaItems.isEmpty()){
                     MediaHandler media = (MediaHandler) mediaItems.get(0);
-                    vBox.getChildren().add(media.getContent());
+                    Node content = media.getContent();
+                    if (content != null) {
+                        vBox.getChildren().add(content);
+                    }
                     mediaItems.remove(media);
                 }
             });

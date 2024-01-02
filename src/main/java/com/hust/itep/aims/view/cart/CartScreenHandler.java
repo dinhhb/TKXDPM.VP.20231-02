@@ -12,10 +12,12 @@ import com.hust.itep.aims.view.shipping.ShippingScreenHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -48,6 +50,15 @@ public class CartScreenHandler extends BaseScreenHandler {
 
     public CartScreenHandler(Stage stage, String screenPath) throws IOException {
         super(stage, screenPath);
+        File file = new File(Configs.IMAGE_PATH + "/Logo.png");
+        Image im = new Image(file.toURI().toString());
+        aimsImage.setImage(im);
+
+        // on mouse clicked, we back to home
+        aimsImage.setOnMouseClicked(e -> {
+            homeScreenHandler.show();
+        });
+
         placeOrderBtn.setOnMouseClicked(e -> {
             LOGGER.info("Place Order button clicked");
             try {
@@ -66,6 +77,7 @@ public class CartScreenHandler extends BaseScreenHandler {
     }
 
     public void requestToViewCart(HomeScreenHandler homeScreenHandler) throws SQLException {
+        setPreviousScreen(homeScreenHandler);
         setScreenTitle("Cart Screen");
         getBController().checkAvailabilityOfProduct();
         displayCartWithMediaAvailability();
@@ -76,9 +88,9 @@ public class CartScreenHandler extends BaseScreenHandler {
         try {
             // create placeOrderController and process the order
             PlaceOrderController placeOrderController = new PlaceOrderController();
-//            if (placeOrderController.getListCartMedia().size() == 0){
-//                return;
-//            }
+            if (placeOrderController.getListCartMedia().size() == 0){
+                return;
+            }
 
             placeOrderController.placeOrder();
 
@@ -91,8 +103,9 @@ public class CartScreenHandler extends BaseScreenHandler {
 
             // display shipping form
             ShippingScreenHandler shippingScreenHandler = new ShippingScreenHandler(this.stage, Configs.SHIPPING_SCREEN_PATH, order);
+            shippingScreenHandler.setHomeScreenHandler(homeScreenHandler);
             shippingScreenHandler.setScreenTitle("Shipping Screen");
-//            shippingScreenHandler.setBController(placeOrderController);
+            shippingScreenHandler.setBController(placeOrderController);
             shippingScreenHandler.show();
         } catch (Exception e) {
             LOGGER.info("Error: "+e);
@@ -102,7 +115,7 @@ public class CartScreenHandler extends BaseScreenHandler {
     }
 
     public void updateCart() throws SQLException{
-//        getBController().checkAvailabilityOfProduct();
+        getBController().checkAvailabilityOfProduct();
         displayCartWithMediaAvailability();
     }
 
@@ -123,44 +136,22 @@ public class CartScreenHandler extends BaseScreenHandler {
         // clear all old cartMedia
         vboxCart.getChildren().clear();
 
-        // get list media of cart after check availability
-//        List lstMedia = getBController().getListCartMedia();
-//        List lstMedia = new ArrayList();
-//        Media media = new Media (5, "abc", 100, "book", 3);
-//        Cart cart = Cart.getCart();
-//        CartMedia cartMedia1 = new CartMedia(media, cart,2, 200); // replace quantity and price with actual values
-//        lstMedia.add(cartMedia1);
-//        System.out.println("Test: "+lstMedia);
-//        // Add the CartMedia to the list
-//        lstMedia.add(cartMedia1);
-//
-////        // Create a cart media object
-////        CartMedia cartMedia = new CartMedia(media, 2, 200);
-////
-////        // Add the cart media to the cart
-//        List<CartMedia> cart = new ArrayList<>();
-//        cart.add(cartMedia);
         List lstMedia = getBController().getListCartMedia();
 
         try {
             for (Object cm : lstMedia) {
-
                 // display the attribute of vboxCart media
                 CartMedia cartMedia = (CartMedia) cm;
                 MediaHandler mediaCartScreen = new MediaHandler(Configs.CART_MEDIA_PATH, this);
                 mediaCartScreen.setCartMedia(cartMedia);
-
                 // add spinner
                 vboxCart.getChildren().add(mediaCartScreen.getContent());
             }
             // calculate subtotal and amount
-//            updateCartAmount();
+            updateCartAmount();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setImage(){
     }
 
 }

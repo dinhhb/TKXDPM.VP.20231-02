@@ -1,6 +1,6 @@
 package com.hust.itep.aims.entity.shipping;
 import com.hust.itep.aims.entity.order.Order;
-import org.example.DistanceCalculator;
+//import org.example.DistanceCalculator;
 
 public class DeliveryInfo {
     private String name;
@@ -8,7 +8,7 @@ public class DeliveryInfo {
     private String province;
     private String address;
     private String shippingInstructions;
-    private DistanceCalculator distanceCalculator;
+//    private DistanceCalculator distanceCalculator;
 
     public DeliveryInfo (){
     }
@@ -61,9 +61,9 @@ public class DeliveryInfo {
         this.shippingInstructions = shippingInstructions;
     }
 
-    public int calculateShippingFee(Order order) {
-        int distance = distanceCalculator.calculateDistance(address, province);
-        return (int) (distance * 1.2);
-    }
+//    public int calculateShippingFee(Order order) {
+//        int distance = distanceCalculator.calculateDistance(address, province);
+//        return (int) (distance * 1.2);
+//    }
 
 }

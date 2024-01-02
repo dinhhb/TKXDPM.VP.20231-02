@@ -3,7 +3,9 @@ package com.hust.itep.aims.view.home;
 
 import com.hust.itep.aims.entity.media.*;
 import com.hust.itep.aims.entity.cart.*;
+import com.hust.itep.aims.utils.Configs;
 import com.hust.itep.aims.utils.Utils;
+import com.hust.itep.aims.view.BaseScreenHandler;
 import com.hust.itep.aims.view.FXMLScreenHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,32 +16,31 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Logger;
 
 
-public class MediaHandler extends FXMLScreenHandler {
+public class MediaHandler extends BaseScreenHandler {
 
     @FXML
-    protected ImageView mediaImage;
+    private ImageView mediaImage;
 
     @FXML
-    protected Label mediaTitle;
+    private Label mediaTitle;
 
     @FXML
-    protected Label mediaPrice;
+    private Label mediaPrice;
 
     @FXML
-    protected Label mediaAvail;
+    private Label mediaAvail;
 
     @FXML
-    protected Spinner<Integer> spinnerChangeNumber;
+    private Spinner<Integer> spinnerChangeNumber;
 
     @FXML
-    protected Button addToCartBtn;
+    private Button addToCartBtn;
 
     private static Logger LOGGER = Utils.getLogger(MediaHandler.class.getName());
     private Media media;
@@ -96,11 +97,16 @@ public class MediaHandler extends FXMLScreenHandler {
      */
     private void setMediaInfo() throws SQLException {
         // set the cover image of media
-//        File file = new File(media.getImageURL());
-//        Image image = new Image(file.toURI().toString());
-//        mediaImage.setFitHeight(160);
-//        mediaImage.setFitWidth(152);
-//        mediaImage.setImage(image);
+//        File file = new File(media.getImageUrl());
+//        int i = (int) ((Math.random() * (6 - 1)) + 1);
+//        String path = Configs.IMAGE_PATH + i +".png";
+
+        String path = Configs.IMAGE_PATH + "/media/2.png";
+        File file = new File(path);
+        Image image = new Image(file.toURI().toString());
+        mediaImage.setFitHeight(160);
+        mediaImage.setFitWidth(152);
+        mediaImage.setImage(image);
 
         mediaTitle.setText(media.getTitle());
         mediaPrice.setText(Utils.getCurrencyFormat(media.getPrice()));
@@ -108,7 +114,7 @@ public class MediaHandler extends FXMLScreenHandler {
         spinnerChangeNumber.setValueFactory(
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 1)
         );
+//        setImage(mediaImage, path);
 
-        setImage(mediaImage, media.getImageUrl());
     }
 }

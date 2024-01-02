@@ -10,18 +10,13 @@ public class Configs {
 	public static float PERCENT_VAT = 10;
 
 	// static resource
-	public static final String IMAGE_PATH = "src/main/resources/image";
-	public static final String INVOICE_SCREEN_PATH = "/fxml/invoice.fxml";
-	public static final String INVOICE_MEDIA_SCREEN_PATH = "/views/fxml/media_invoice.fxml";
-	public static final String PAYMENT_SCREEN_PATH = "/views/fxml/payment.fxml";
-	public static final String RESULT_SCREEN_PATH = "/views/fxml/result.fxml";
-	public static final String SPLASH_SCREEN_PATH = "/views/fxml/splash.fxml";
+	public static final String IMAGE_PATH = "../../../.../resources/assets/images";
 	public static final String CART_SCREEN_PATH = "/fxml/cart.fxml";
 	public static final String SHIPPING_SCREEN_PATH = "/fxml/shipping.fxml";
 	public static final String CART_MEDIA_PATH = "/fxml/media_cart.fxml";
 	public static final String HOME_PATH  = "/fxml/home.fxml";
 	public static final String HOME_MEDIA_PATH = "/fxml/media_home.fxml";
-	public static final String POPUP_PATH = "/views/fxml/popup.fxml";
+
 
 	public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
 
