@@ -84,6 +84,14 @@ public class MediaHandler extends BaseScreenHandler {
 
             }
         });
+        mediaImage.setOnMouseClicked(event -> {
+            try {
+                showMediaDetails(media);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         setMediaInfo();
     }
 
@@ -120,5 +128,11 @@ public class MediaHandler extends BaseScreenHandler {
         );
 //        setImage(mediaImage, path);
 
+    }
+
+    private void showMediaDetails(Media media) throws IOException {
+        MediaDetailHandler mediaDetailHandler = new MediaDetailHandler(this.stage, Configs.HOME_MEDIA_DETAIL_PATH, media);
+        mediaDetailHandler.setScreenTitle("Detail media:" + media.getTitle());
+        mediaDetailHandler.show();
     }
 }

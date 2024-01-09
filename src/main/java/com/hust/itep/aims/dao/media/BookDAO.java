@@ -16,7 +16,6 @@ import java.util.Date;
  * @author
  */
 public class BookDAO extends MediaDAO {
-
     @Override
     public Media getMediaById(int id) throws SQLException {
         String sql = "SELECT * FROM "+
@@ -30,6 +29,7 @@ public class BookDAO extends MediaDAO {
         // Create statement
         Statement stmt = conn.createStatement();
         ResultSet res = stmt.executeQuery(sql);
+        Book book = new Book();
         if(res.next()) {
 
             // from Media table
@@ -41,7 +41,7 @@ public class BookDAO extends MediaDAO {
             int quantity = res.getInt("quantity");
             String barcode = res.getString("barcode");
             Date importDate = res.getDate("importDate");
-            Boolean rushOrderSupport = res.getBoolean("rushOrderSupport");
+//            Boolean rushOrderSupport = res.getBoolean("rushOrderSupport");
             String imageUrl = res.getString("imageUrl");
             String productDimension = res.getString("productDimension");
 
@@ -53,10 +53,11 @@ public class BookDAO extends MediaDAO {
             int pages = res.getInt("pages");
             String language = res.getString("language");
             String bookCategory = res.getString("bookCategory");
-            return new Book(id, category, price, value, title, description, quantity, importDate, rushOrderSupport, barcode, productDimension, imageUrl,
+            book = new Book(id, category, price, value, title, description, quantity, importDate, barcode, productDimension, imageUrl,
                     authors, hardCover, publisher, publicationDate, pages, language, bookCategory);
         } else {
             throw new SQLException();
         }
+        return book;
     }
 }

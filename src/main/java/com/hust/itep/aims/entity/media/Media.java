@@ -139,6 +139,21 @@ public class Media {
         this.barcode = barcode;
         this.imageUrl = imageUrl;
     }
+
+    public Media(Integer id, String category, int price, int value, String title, String description, int quantity, Date importDate, String barcode, String productDimension, String imageUrl) {
+        this.id = id;
+        this.category = category;
+        this.price = price;
+        this.value = value;
+        this.title = title;
+        this.description = description;
+        this.quantity = quantity;
+        this.importDate = importDate;
+        this.productDimension = productDimension;
+        this.barcode = barcode;
+        this.imageUrl = imageUrl;
+    }
+
     public Object[] toTableRow(int rowNum) {
         DecimalFormat dfPrice = new DecimalFormat("#,##0.00");
         DecimalFormat df = new DecimalFormat("#,##0.##");

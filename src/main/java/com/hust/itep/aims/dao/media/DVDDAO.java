@@ -30,6 +30,7 @@ public class DVDDAO extends MediaDAO {
         // Create statement
         Statement stmt = conn.createStatement();
         ResultSet res = stmt.executeQuery(sql);
+        Dvd dvd = new Dvd();
         if(res.next()) {
 
 // from media table
@@ -41,24 +42,24 @@ public class DVDDAO extends MediaDAO {
             int quantity = res.getInt("quantity");
             String barcode = res.getString("barcode");
             Date importDate = res.getDate("importDate");
-            Boolean rushOrderSupport = res.getBoolean("rushOrderSupport");
             String imageUrl = res.getString("imageUrl");
             String productDimension = res.getString("productDimension");
 
             // from DVD table
-            String dvdType = res.getString("discType");
+            String dvdType = res.getString("dvdType");
             String director = res.getString("director");
             int runtime = res.getInt("runtime");
             String studio = res.getString("studio");
             String language = res.getString("language");
-            String subtitles = res.getString("subtitle");
+            String subtitles = res.getString("subtitles");
             Date releasedDate = res.getDate("releasedDate");
             String filmType = res.getString("filmType");
 
-            return new Dvd(id, category, price, value, title, description, quantity, importDate, rushOrderSupport, barcode, productDimension, imageUrl,
+            dvd = new Dvd(id, category, price, value, title, description, quantity, importDate, barcode, productDimension, imageUrl,
                     dvdType, director, runtime, studio, language, subtitles, releasedDate, filmType);
         } else {
             throw new SQLException();
         }
+        return dvd;
     }
 }

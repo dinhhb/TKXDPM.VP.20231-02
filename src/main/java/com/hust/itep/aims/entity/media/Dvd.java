@@ -25,6 +25,18 @@ public class Dvd extends Media {
        this.filmType = filmType;
    }
 
+    public Dvd(Integer id, String category, int price, int value, String title, String description, int quantity, Date importDate, String barcode, String productDimension, String imageUrl, String dvdType, String director, int runtime, String studio, String language, String subtitles, Date releasedDate, String filmType) {
+        super(id, category, price, value, title, description, quantity, importDate, barcode, productDimension, imageUrl);
+        this.dvdType = dvdType;
+        this.director = director;
+        this.runtime = runtime;
+        this.studio = studio;
+        this.language = language;
+        this.subtitles = subtitles;
+        this.releasedDate = releasedDate;
+        this.filmType = filmType;
+    }
+
    public Dvd(){
        super();
    }

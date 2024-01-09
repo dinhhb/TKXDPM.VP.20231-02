@@ -30,6 +30,7 @@ public class CDDAO extends MediaDAO {
         // Create statement
         Statement stmt = conn.createStatement();
         ResultSet res = stmt.executeQuery(sql);
+        CdAndLp cdAndLp = new CdAndLp();
         if(res.next()) {
 
             // from media table
@@ -41,7 +42,6 @@ public class CDDAO extends MediaDAO {
             int quantity = res.getInt("quantity");
             String barcode = res.getString("barcode");
             Date importDate = res.getDate("importDate");
-            Boolean rushOrderSupport = res.getBoolean("rushOrderSupport");
             String imageUrl = res.getString("imageUrl");
             String productDimension = res.getString("productDimension");
 
@@ -49,13 +49,12 @@ public class CDDAO extends MediaDAO {
             String artists = res.getString("artists");
             String recordLabel = res.getString("recordLabel");
             String trackList = res.getString("trackList");
-            Date releasedDate = res.getDate("releasedDate");
             String musicType = res.getString("musicType");
-
-            return new CdAndLp(id, category, price, value, title, description, quantity, importDate, rushOrderSupport, barcode, productDimension, imageUrl,
-                    artists, recordLabel, trackList, releasedDate, musicType);
+            cdAndLp =new CdAndLp(id, category, price, value, title, description, quantity, importDate, barcode, productDimension, imageUrl,
+                    artists, recordLabel, trackList, musicType);
         } else {
             throw new SQLException();
         }
+        return cdAndLp;
     }
 }
