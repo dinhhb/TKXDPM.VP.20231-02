@@ -310,10 +310,16 @@ This is a Capstone's source code for Software Design and Construction project
 <summary>Hà Bửu Định</summary>
 
 - Assigned tasks:
+    - Update code CRUD admin
+    - Update diagrams
 
 - Implementation details:
-    - Pull Request(s): 
-    - Specific implementation details:
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/15
+  - Specific implementation details:
+      - Update report: https://docs.google.com/document/d/1w10soel5raXmP74krufuV9qkznqV-g4_PEN1zeni1Ec/edit?usp=sharing
+      - Use constructor instead of many setters in BookScreen
+      - Call addMedia directly in BookService instead of MediaService
+      - Update factory pattern: Remove MediaScreenFactory, create interface MediaScreenCreator and classes BookScreenCreator, DVDScreenCreator, etc implement this interface. Use reflection to avoid control coupling (see details in update report)
         
 
 
