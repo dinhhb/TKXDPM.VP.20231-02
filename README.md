@@ -287,3 +287,49 @@ This is a Capstone's source code for Software Design and Construction project
 </details>
 
 
+---
+
+<details>
+  <summary>Week 6 (Update): 02/1/2024~13/01/2024 </summary>
+<br>
+
+<details>
+
+<summary>Cao Thành Duy</summary>
+
+- Assigned tasks:
+
+- Implementation details:
+    - Pull Request(s):
+    - Specific implementation details:
+
+
+</details>
+
+<details>
+<summary>Hà Bửu Định</summary>
+
+- Assigned tasks:
+
+- Implementation details:
+    - Pull Request(s): 
+    - Specific implementation details:
+        
+
+
+</details>
+
+
+<details>
+<summary>Nguyễn Đình Dương</summary>
+
+- Assigned tasks:
+
+- Implementation details:
+    - Pull Request(s):
+    - Specific implementation details:
+
+</details>
+
+</details>
+

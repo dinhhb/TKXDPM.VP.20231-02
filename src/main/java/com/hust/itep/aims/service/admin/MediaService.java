@@ -13,13 +13,6 @@ import javafx.scene.control.Alert;
 import java.sql.*;
 import java.util.Date;
 
-/**
- * Ứng dụng singleton pattern
- * Mục đích:
- * - đảm bảo chỉ có 1 instance mediaService để tạo và duy trì kết nối tới db của admin
- * - sử dụng chung 1 mediaService trong các controller của admin
- */
-
 public class MediaService {
 
     public Connection getConnection() {
@@ -27,56 +20,10 @@ public class MediaService {
     }
 
     private Connection connection; // Database connection
-    private static MediaService instance;
-
     private Alert alert;
 
-//    public MediaService(Connection connection) {
-//        this.connection = connection;
-//    }
-
-    // Private constructor
-    private MediaService() {
+    public MediaService() {
         this.connection = ConnectJDBC.getConnection();
-    }
-
-    // Static method to get the instance
-    public static MediaService getInstance() {
-        if (instance == null) {
-            instance = new MediaService();
-        }
-        return instance;
-    }
-
-    public void addMedia(Media media) throws SQLException {
-        if (isTitleTaken(media.getTitle())) {
-            ErrorAlert errorAlert = new ErrorAlert();
-            errorAlert.createAlert("Error Message", null, "Media title is already taken");
-            errorAlert.show();
-            throw new IllegalArgumentException(media.getTitle() + " is already taken");
-        }
-
-        IMediaService handler = MediaServiceFactory.getHandler(media);
-        if (handler != null) {
-            handler.addMedia(media);
-        }
-    }
-
-    public void updateMedia(Media media) throws SQLException {
-        IMediaService handler = MediaServiceFactory.getHandler(media);
-        if (handler != null) {
-            handler.updateMedia(media);
-        }
-    }
-
-
-    private boolean isTitleTaken(String title) throws SQLException {
-        String checkTitleSql = "SELECT title FROM Media WHERE title = ?";
-        try (PreparedStatement statement = connection.prepareStatement(checkTitleSql)) {
-            statement.setString(1, title);
-            ResultSet resultSet = statement.executeQuery();
-            return resultSet.next();
-        }
     }
 
     public void deleteMedia(int mediaId) throws SQLException {

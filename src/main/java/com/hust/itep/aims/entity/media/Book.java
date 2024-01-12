@@ -23,6 +23,21 @@ public class Book extends Media {
     this.bookCategory = bookCategory;
    }
 
+    public Book(Media media, String authors, String hardCover, String publisher,
+                String language, String category, int pages, Date publicationDate) {
+        super(media.getId(), media.getCategory(), media.getPrice(),
+                media.getValue(), media.getTitle(),  media.getDescription(),
+                media.getQuantity(), media.getImportDate(),  media.getRushOrderSupport(),
+                media.getProductDimension(), media.getBarcode(), media.getImageUrl());
+        this.setAuthors(authors);
+        this.setHardCover(hardCover);
+        this.setPublisher(publisher);
+        this.setLanguage(language);
+        this.setBookCategory(category);
+        this.setPages(pages);
+        this.setPublicationDate(publicationDate);
+    }
+
    public Book() {
        super();
    }

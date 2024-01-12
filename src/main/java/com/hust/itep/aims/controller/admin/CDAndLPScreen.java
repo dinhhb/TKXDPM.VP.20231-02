@@ -19,7 +19,6 @@ public class CDAndLPScreen implements MediaScreen {
 
     private Media media;
     private DataChangedListener dataChangedListener;
-    MediaService mediaService = MediaService.getInstance();
     CDAndLPService cdAndLpService;
 
     public CDAndLPScreen() {
@@ -109,32 +108,20 @@ public class CDAndLPScreen implements MediaScreen {
         }
 
         try{
-            CdAndLp newCdAndLp = new CdAndLp();
-
-            // Sao chép các giá trị từ đối tượng media
-            newCdAndLp.setId(media.getId());
-            newCdAndLp.setCategory(media.getCategory());
-            newCdAndLp.setTitle(media.getTitle());
-            newCdAndLp.setBarcode(media.getBarcode());
-            newCdAndLp.setQuantity(media.getQuantity());
-            newCdAndLp.setValue(media.getValue());
-            newCdAndLp.setPrice(media.getPrice());
-            newCdAndLp.setProductDimension(media.getProductDimension());
-            newCdAndLp.setDescription(media.getDescription());
-            newCdAndLp.setRushOrderSupport(media.getRushOrderSupport());
-            newCdAndLp.setImageUrl(media.getImageUrl());
-
-            newCdAndLp.setRecordLabel(recordLabel);
-            newCdAndLp.setArtists(artists);
-            newCdAndLp.setMusicType(musicType);
-            newCdAndLp.setTrackList(trackList);
             java.util.Date releasedDate = java.sql.Date.valueOf(localDate);
-            newCdAndLp.setReleaseDate(releasedDate);
+            CdAndLp newCdAndLp = new CdAndLp(
+                    media,
+                    trackList,
+                    musicType,
+                    artists,
+                    recordLabel,
+                    releasedDate
+            );
 
             if (media.getId() == 0) {
-                mediaService.addMedia(newCdAndLp);
+                cdAndLpService.addMedia(newCdAndLp);
             } else {
-                mediaService.updateMedia(newCdAndLp);
+                cdAndLpService.updateMedia(newCdAndLp);
             }
 
             dataChangedListener.onDataChanged();
