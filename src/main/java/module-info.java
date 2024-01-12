@@ -26,4 +26,10 @@ module com.hust.itep.aims {
     exports com.hust.itep.aims.service.admin;
     opens com.hust.itep.aims.service.admin to javafx.fxml;
     exports com.hust.itep.aims.view.invoice;
+
+    uses com.hust.itep.aims.controller.admin.MediaScreenCreator;
+    provides com.hust.itep.aims.controller.admin.MediaScreenCreator with
+            com.hust.itep.aims.controller.admin.BookScreenCreator,
+            com.hust.itep.aims.controller.admin.CDAndLPScreenCreator,
+            com.hust.itep.aims.controller.admin.DVDScreenCreator;
 }

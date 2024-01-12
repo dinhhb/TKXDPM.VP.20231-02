@@ -23,7 +23,19 @@ public class CdAndLp extends Media {
        super();
    }
 
-   public String getArtists() {
+    public CdAndLp(Media media, String trackList, String musicType, String artists, String recordLabel, Date releasedDate) {
+        super(media.getId(), media.getCategory(), media.getPrice(),
+                media.getValue(), media.getTitle(),  media.getDescription(),
+                media.getQuantity(), media.getImportDate(),  media.getRushOrderSupport(),
+                media.getProductDimension(), media.getBarcode(), media.getImageUrl());
+        this.trackList = trackList;
+        this.musicType = musicType;
+        this.artists = artists;
+        this.recordLabel = recordLabel;
+        this.releaseDate = releasedDate;
+    }
+
+    public String getArtists() {
        return artists;
    }
 

@@ -36,8 +36,8 @@ public class AdminController implements Initializable, DataChangedListener {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Use the singleton instance of MediaService
-        this.mediaService = MediaService.getInstance();
+        this.mediaService = new MediaService();
+        this.mediaScreenCreator = loadMediaScreenCreator();
 
         displayUsername();
         mediasCategoryList();
@@ -160,6 +160,19 @@ public class AdminController implements Initializable, DataChangedListener {
     private Image image;
     private ObservableList<Media> mediaListData;
 
+    private Map<String, MediaScreenCreator> mediaScreenCreator;
+
+    private Map<String, MediaScreenCreator> loadMediaScreenCreator() {
+        Map<String, MediaScreenCreator> creators = new HashMap<>();
+        ServiceLoader<MediaScreenCreator> loader = ServiceLoader.load(MediaScreenCreator.class);
+        for (MediaScreenCreator creator : loader) {
+            for (String mediaType : creator.getSupportedMediaType()) {
+                creators.put(mediaType.toUpperCase(), creator);
+            }
+        }
+        return creators;
+    }
+
     public void mediasAddBtn() {
         if (media_title.getText().isEmpty()
                 || media_category.getSelectionModel().getSelectedItem() == null
@@ -199,8 +212,14 @@ public class AdminController implements Initializable, DataChangedListener {
             // Sử dụng Factory Pattern để hiển thị màn hình phù hợp
             String category = media_category.getValue().toString();
 //            System.out.println(category);
-            MediaScreen screen = MediaScreenFactory.getMediaScreen(category.toUpperCase(), newMedia, this);
-            if (screen != null) {
+//            MediaScreen screen = MediaScreenFactory.getMediaScreen(category.toUpperCase(), newMedia, this);
+//            if (screen != null) {
+//                screen.showScreen();
+//            }
+
+            MediaScreenCreator creator = this.mediaScreenCreator.get(category.toUpperCase());
+            if (creator != null) {
+                MediaScreen screen = creator.getMediaScreen(newMedia, this);
                 screen.showScreen();
             }
 
@@ -253,8 +272,14 @@ public class AdminController implements Initializable, DataChangedListener {
 
             String category = media_category.getValue().toString();
 
-            MediaScreen screen = MediaScreenFactory.getMediaScreen(category.toUpperCase(), updatedMedia, this);
-            if (screen != null) {
+//            MediaScreen screen = MediaScreenFactory.getMediaScreen(category.toUpperCase(), updatedMedia, this);
+//            if (screen != null) {
+//                screen.showScreen();
+//            }
+
+            MediaScreenCreator creator = this.mediaScreenCreator.get(category.toUpperCase());
+            if (creator != null) {
+                MediaScreen screen = creator.getMediaScreen(updatedMedia, this);
                 screen.showScreen();
             }
 

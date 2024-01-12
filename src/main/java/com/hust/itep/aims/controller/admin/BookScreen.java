@@ -19,8 +19,6 @@ public class BookScreen implements MediaScreen {
 
     private Media media;
     private DataChangedListener dataChangedListener;
-    MediaService mediaService = MediaService.getInstance();
-
     BookService bookService;
 
 
@@ -117,38 +115,26 @@ public class BookScreen implements MediaScreen {
         }
 
         try{
-            Book newBook = new Book();
-
-            // Sao chép các giá trị từ đối tượng media
-            newBook.setId(media.getId());
-            newBook.setCategory(media.getCategory());
-            newBook.setTitle(media.getTitle());
-            newBook.setBarcode(media.getBarcode());
-            newBook.setQuantity(media.getQuantity());
-            newBook.setValue(media.getValue());
-            newBook.setPrice(media.getPrice());
-            newBook.setProductDimension(media.getProductDimension());
-            newBook.setDescription(media.getDescription());
-            newBook.setRushOrderSupport(media.getRushOrderSupport());
-            newBook.setImageUrl(media.getImageUrl());
-
-
-            newBook.setAuthors(author);
-            newBook.setHardCover(hardCover);
-            newBook.setPublisher(publisher);
-            newBook.setLanguage(language);
-            newBook.setBookCategory(category);
-            newBook.setPages(pages);
             java.util.Date publicationDate = java.sql.Date.valueOf(localDate);
-            newBook.setPublicationDate(publicationDate);
+
+            Book newBook = new Book(
+                    media,
+                    author,
+                    hardCover,
+                    publisher,
+                    language,
+                    category,
+                    pages,
+                    publicationDate
+            );
 
             // Check if it's a new book or an update
             if (media.getId() == 0) {
                 // It's a new book
-                mediaService.addMedia(newBook);
+                bookService.addMedia(newBook);
             } else {
                 // It's an existing book
-                mediaService.updateMedia(newBook);
+                bookService.updateMedia(newBook);
             }
 
             dataChangedListener.onDataChanged();

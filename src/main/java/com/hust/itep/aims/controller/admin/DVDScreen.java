@@ -19,7 +19,6 @@ public class DVDScreen implements MediaScreen {
 
     private Media media;
     private DataChangedListener dataChangedListener;
-    MediaService mediaService = MediaService.getInstance();
     DVDService dvdService;
 
     public DVDScreen() {
@@ -118,38 +117,26 @@ public class DVDScreen implements MediaScreen {
         }
 
         try{
-            Dvd newDvd = new Dvd();
-
-            // Sao chép các giá trị từ đối tượng media
-            newDvd.setId(media.getId());
-            newDvd.setCategory(media.getCategory());
-            newDvd.setTitle(media.getTitle());
-            newDvd.setBarcode(media.getBarcode());
-            newDvd.setQuantity(media.getQuantity());
-            newDvd.setValue(media.getValue());
-            newDvd.setPrice(media.getPrice());
-            newDvd.setProductDimension(media.getProductDimension());
-            newDvd.setDescription(media.getDescription());
-            newDvd.setRushOrderSupport(media.getRushOrderSupport());
-            newDvd.setImageUrl(media.getImageUrl());
-
-            newDvd.setFilmType(filmType);
-            newDvd.setDvdType(type);
-            newDvd.setSubtitles(subtitles);
-            newDvd.setLanguage(language);
-            newDvd.setStudio(studio);
-            newDvd.setRuntime(runtime);
-            newDvd.setDirector(director);
             java.util.Date publicationDate = java.sql.Date.valueOf(localDate);
-            newDvd.setReleasedDate(publicationDate);
+            Dvd newDvd = new Dvd(
+                    media,
+                    studio,
+                    filmType,
+                    type,
+                    language,
+                    director,
+                    subtitles,
+                    runtime,
+                    publicationDate
+            );
 
             // Check if it's a new dvd or an update
             if (media.getId() == 0) {
                 // It's a new dvd
-                mediaService.addMedia(newDvd);
+                dvdService.addMedia(newDvd);
             } else {
                 // It's an existing dvd
-                mediaService.updateMedia(newDvd);
+                dvdService.updateMedia(newDvd);
             }
 
             dataChangedListener.onDataChanged();

@@ -1,8 +1,10 @@
 package com.hust.itep.aims.service.admin;
 
+import com.hust.itep.aims.database.ConnectJDBC;
 import com.hust.itep.aims.entity.media.Dvd;
 import com.hust.itep.aims.entity.media.Media;
 import com.hust.itep.aims.utils.ConfirmationAlert;
+import com.hust.itep.aims.utils.ErrorAlert;
 import com.hust.itep.aims.utils.InformationAlert;
 
 import java.sql.*;
@@ -13,11 +15,27 @@ public class DVDService implements IMediaService{
     private final Connection connection;
 
     public DVDService() {
-        this.connection = MediaService.getInstance().getConnection();
+        this.connection = ConnectJDBC.getConnection();
+    }
+
+    private boolean isTitleTaken(String title) throws SQLException {
+        String checkTitleSql = "SELECT title FROM Media WHERE title = ?";
+        try (PreparedStatement statement = connection.prepareStatement(checkTitleSql)) {
+            statement.setString(1, title);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        }
     }
 
     @Override
     public void addMedia(Media media) throws SQLException {
+        if (isTitleTaken(media.getTitle())) {
+            ErrorAlert errorAlert = new ErrorAlert();
+            errorAlert.createAlert("Error Message", null, "Media title is already taken");
+            errorAlert.show();
+            throw new IllegalArgumentException(media.getTitle() + " is already taken");
+        }
+
         // Bắt đầu giao dịch
         connection.setAutoCommit(false);
 
