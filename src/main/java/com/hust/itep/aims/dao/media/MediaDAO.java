@@ -74,18 +74,4 @@ public class MediaDAO {
         return null;
     }
 
-
-    public void updateMediaFieldById(String tbname, int id, String field, Object value) throws SQLException {
-        Connection conn = null;
-        // Connnect to database
-        conn = ConnectJDBC.getConnection();
-        // Create statement
-        Statement stmt = conn.createStatement();
-        if (value instanceof String){
-            value = "\"" + value + "\"";
-        }
-        stmt.executeUpdate(" update Media set" + " "
-                + field + "=" + value + " "
-                + "where id=" + id + ";");
-    }
 }

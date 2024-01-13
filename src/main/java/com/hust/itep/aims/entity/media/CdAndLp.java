@@ -19,6 +19,14 @@ public class CdAndLp extends Media {
        this.musicType = musicType;
    }
 
+    public CdAndLp(Integer id, String category, int price, int value, String title, String description, int quantity, Date importDate, String barcode, String productDimension, String imageUrl, String artists, String recordLabel, String trackList, String musicType) {
+        super(id, category, price, value, title, description, quantity, importDate, barcode, productDimension, imageUrl);
+        this.artists = artists;
+        this.recordLabel = recordLabel;
+        this.trackList = trackList;
+        this.musicType = musicType;
+    }
+
    public CdAndLp() {
        super();
    }

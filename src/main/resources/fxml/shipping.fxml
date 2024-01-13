@@ -163,29 +163,29 @@
                               <Insets top="10.0" />
                            </padding>
                         </HBox>
-                        <HBox prefHeight="35.0" prefWidth="200.0">
-                           <children>
-                              <Label prefHeight="42.0" prefWidth="282.0" text="*Quận/Huyện" textFill="#f33061">
-                                 <padding>
-                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />
-                                 </padding>
-                                 <font>
-                                    <Font name="SVN-Linux Libertine bold" size="18.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets bottom="7.0" top="5.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <ChoiceBox prefHeight="30.0" prefWidth="188.0">
-                                 <HBox.margin>
-                                    <Insets top="18.0" />
-                                 </HBox.margin>
-                              </ChoiceBox>
-                           </children>
-                           <padding>
-                              <Insets top="10.0" />
-                           </padding>
-                        </HBox>
+<!--                        <HBox prefHeight="35.0" prefWidth="200.0">-->
+<!--                           <children>-->
+<!--                              <Label prefHeight="42.0" prefWidth="282.0" text="*Quận/Huyện" textFill="#f33061">-->
+<!--                                 <padding>-->
+<!--                                    <Insets bottom="5.0" left="15.0" right="15.0" top="15.0" />-->
+<!--                                 </padding>-->
+<!--                                 <font>-->
+<!--                                    <Font name="SVN-Linux Libertine bold" size="18.0" />-->
+<!--                                 </font>-->
+<!--                                 <HBox.margin>-->
+<!--                                    <Insets bottom="7.0" top="5.0" />-->
+<!--                                 </HBox.margin>-->
+<!--                              </Label>-->
+<!--                              <ChoiceBox prefHeight="30.0" prefWidth="188.0">-->
+<!--                                 <HBox.margin>-->
+<!--                                    <Insets top="18.0" />-->
+<!--                                 </HBox.margin>-->
+<!--                              </ChoiceBox>-->
+<!--                           </children>-->
+<!--                           <padding>-->
+<!--                              <Insets top="10.0" />-->
+<!--                           </padding>-->
+<!--                        </HBox>-->
                         <HBox prefHeight="35.0" prefWidth="200.0">
                            <children>
                               <Label prefHeight="35.0" prefWidth="282.0" text="*Địa chỉ cụ thể" textFill="#f33061">

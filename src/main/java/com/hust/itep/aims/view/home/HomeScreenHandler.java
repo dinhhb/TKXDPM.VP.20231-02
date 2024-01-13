@@ -9,12 +9,11 @@ import com.hust.itep.aims.utils.Utils;
 import com.hust.itep.aims.view.BaseScreenHandler;
 import com.hust.itep.aims.view.cart.CartScreenHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -26,6 +25,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 
 public class HomeScreenHandler extends BaseScreenHandler {
@@ -55,6 +55,9 @@ public class HomeScreenHandler extends BaseScreenHandler {
 
     @FXML
     private SplitMenuButton splitMenuBtnSearch;
+
+    @FXML
+    private TextField searchTextField;
 
     private List homeItems;
 
@@ -110,8 +113,10 @@ public class HomeScreenHandler extends BaseScreenHandler {
         });
         addMediaHome(homeItems);
         addMenuItem(0, "Book", splitMenuBtnSearch);
-        addMenuItem(1, "Dvd", splitMenuBtnSearch);
-        addMenuItem(2, "CdAndLP", splitMenuBtnSearch);
+        addMenuItem(1, "DVD", splitMenuBtnSearch);
+        addMenuItem(2, "CD", splitMenuBtnSearch);
+        addMenuItem(3, "LP", splitMenuBtnSearch);
+        searchTextField.setOnKeyReleased(event -> handleSearch(event));
     }
 
     public void setImage(){
@@ -168,11 +173,11 @@ public class HomeScreenHandler extends BaseScreenHandler {
             });
 
             // filter only media with the choosen category
-            List filteredItems = new ArrayList<>();
+            List<MediaHandler> filteredItems = new ArrayList<>();
 
             homeItems.forEach(me -> {
                 MediaHandler media = (MediaHandler) me;
-                if (media.getMedia().getTitle().toLowerCase().startsWith(text.toLowerCase())){
+                if (media.getMedia().getCategory().equalsIgnoreCase(text)) {
                     filteredItems.add(media);
                 }
             });
@@ -181,5 +186,20 @@ public class HomeScreenHandler extends BaseScreenHandler {
             addMediaHome(filteredItems);
         });
         menuButton.getItems().add(position, menuItem);
+    }
+
+    private void handleSearch(KeyEvent event) {
+        String searchTerm = searchTextField.getText().toLowerCase().trim();
+
+        List<MediaHandler> filteredItems = new ArrayList<>();
+
+        homeItems.forEach(me -> {
+            MediaHandler media = (MediaHandler) me;
+            if (media.getMedia().getTitle().toLowerCase().contains(searchTerm)) {
+                filteredItems.add(media);
+            }
+        });
+        // Update the displayed media based on the filtered items
+        addMediaHome(filteredItems);
     }
 }

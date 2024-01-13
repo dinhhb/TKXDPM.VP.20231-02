@@ -16,6 +16,7 @@ public class Configs {
 	public static final String CART_MEDIA_PATH = "/fxml/media_cart.fxml";
 	public static final String HOME_PATH  = "/fxml/home.fxml";
 	public static final String HOME_MEDIA_PATH = "/fxml/media_home.fxml";
+	public static final String HOME_MEDIA_DETAIL_PATH = "/fxml/media_home_detail.fxml";
 
 
 	public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
