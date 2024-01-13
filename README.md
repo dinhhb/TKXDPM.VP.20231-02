@@ -330,11 +330,17 @@ This is a Capstone's source code for Software Design and Construction project
 <summary>Nguyễn Đình Dương</summary>
 
 - Assigned tasks:
+    - Update Detail Media
+    - Fix search and filter
 
 - Implementation details:
-    - Pull Request(s):
+    - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/17
     - Specific implementation details:
-
+      - Fix search media by name
+      - Filter medias by category (Dvd or Book or Cd or Lp)
+      - Update code when click image product: See detail media
+      - The information displayed is different for each media category
+      - Update code calculate shipping fee (But not calculated when applying weight )
 </details>
 
 </details>

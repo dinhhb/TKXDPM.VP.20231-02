@@ -1,6 +1,8 @@
 package com.hust.itep.aims.view.shipping;
 
 
+import com.hust.itep.aims.controller.calculate.CalculateController;
+import com.hust.itep.aims.service.OrderService;
 import com.hust.itep.aims.view.invoice.InvoiceHandler;
 import com.hust.itep.aims.controller.PlaceOrderController;
 import com.hust.itep.aims.entity.order.Order;
@@ -91,7 +93,8 @@ public class ShippingScreenHandler extends BaseScreenHandler {
 		} catch (Exception e) {
 			throw new RuntimeException("Invalid address! Error!");
 		}
-
+		CalculateController calculateController = new CalculateController();
+		int shippingFees = calculateController.calculateShippingFee(new OrderService(order));
 		order.setDeliveryInfo(deliveryInfo);
 	}
 
