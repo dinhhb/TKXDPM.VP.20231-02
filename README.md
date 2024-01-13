@@ -273,6 +273,7 @@ This is a Capstone's source code for Software Design and Construction project
 - Assigned tasks:
     - Update and fix code
     - Update diagrams
+    - Code unit test
 
 - Implementation details:
     - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/10
@@ -281,6 +282,7 @@ This is a Capstone's source code for Software Design and Construction project
         - Update view and controller for shipping 
         - Update view and controller for home
         - Update diagrams Data modeling, Usecase
+        - Code Unit test
 
 </details>
 
@@ -343,6 +345,7 @@ This is a Capstone's source code for Software Design and Construction project
       - The information displayed is different for each media category
       - Update code calculate shipping fee (But not calculated when applying weight)
       - Report: https://drive.google.com/file/d/1vH1kSOYWOVDqwwp6loGANhuDekL5isBB/view?usp=sharing
+      - Video demo update: https://drive.google.com/file/d/12CeNAOouxBvdhpuQompQRi7OtUgq8mvG/view?usp=sharing
 </details>
 
 </details>
