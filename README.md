@@ -332,6 +332,7 @@ This is a Capstone's source code for Software Design and Construction project
 - Assigned tasks:
     - Update Detail Media
     - Fix search and filter
+    - Update report
 
 - Implementation details:
     - Pull Request(s): https://github.com/dinhhb/TKXDPM.VP.20231-02/pull/17
@@ -340,7 +341,8 @@ This is a Capstone's source code for Software Design and Construction project
       - Filter medias by category (Dvd or Book or Cd or Lp)
       - Update code when click image product: See detail media
       - The information displayed is different for each media category
-      - Update code calculate shipping fee (But not calculated when applying weight )
+      - Update code calculate shipping fee (But not calculated when applying weight)
+      - Report: https://drive.google.com/file/d/1vH1kSOYWOVDqwwp6loGANhuDekL5isBB/view?usp=sharing
 </details>
 
 </details>
