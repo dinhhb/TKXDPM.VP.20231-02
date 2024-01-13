@@ -41,7 +41,22 @@ public class Dvd extends Media {
        super();
    }
 
-   public String getDvdType() {
+    public Dvd(Media media, String studio, String filmType, String type, String language, String director, String subtitles, int runtime, Date publicationDate) {
+        super(media.getId(), media.getCategory(), media.getPrice(),
+                media.getValue(), media.getTitle(),  media.getDescription(),
+                media.getQuantity(), media.getImportDate(),  media.getRushOrderSupport(),
+                media.getProductDimension(), media.getBarcode(), media.getImageUrl());
+        this.studio = studio;
+        this.filmType = filmType;
+        this.dvdType = type;
+        this.language = language;
+        this.director = director;
+        this.subtitles = subtitles;
+        this.runtime = runtime;
+        this.releasedDate = publicationDate;
+    }
+
+    public String getDvdType() {
        return dvdType;
    }
 
